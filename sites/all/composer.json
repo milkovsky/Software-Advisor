@@ -51,7 +51,7 @@
       "www/sites/all/drush/{$name}/": ["type:drupal-drush"],
       "www/profiles/{$name}/": ["type:drupal-profile"]
     },
-    "preserve-paths": ["www/robots.txt", "www/files", "www/sites/default", "www/sites/all"]
+    "preserve-paths": ["www/robots.txt", "www/.gitignore", "www/files", "www/sites/default", "www/sites/all"]
   },
   "repositories": [{
     "type": "composer",

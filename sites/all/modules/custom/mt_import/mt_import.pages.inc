@@ -32,6 +32,8 @@ function mt_import_form_submit($form, &$form_state) {
     }
   }
 
+  $applications = array();
+
   foreach ($results as $title => $rows) {
     if ($clear) {
       $machine_name = mt_import_get_machine_name($title);
@@ -46,10 +48,18 @@ function mt_import_form_submit($form, &$form_state) {
     mt_import_initialize_vocabulary_fields($vocabulary);
 
     $category = NULL;
+    $result_applications = NULL;
 
     foreach ($rows as $row_number => $row) {
-      if ($row_number == 1 || empty($row['A']) || $row['A'] == 'Total') {
-        // Skip 1st row, empty rows, total row.
+      // Get application names from the 1st row.
+      if ($row_number == 1) {
+        $row = array_filter($row, create_function('$value', 'return !empty($value);'));
+        $result_applications = array_slice($row, 1);
+        continue;
+      }
+
+      if (empty($row['A']) || $row['A'] == 'Total') {
+        // Skip empty rows and the total row.
         continue;
       }
       if (!isset($row['B'])) {
@@ -61,10 +71,54 @@ function mt_import_form_submit($form, &$form_state) {
         // Add 'function' term and assign function's category.
         $name = $row['A'];
         $term = mt_import_taxonomy_term_load_or_create_by_name($name, $vocabulary);
-        $term->field_category[LANGUAGE_NONE][0]['tid'] = $category->tid;
+        $term->field_category[LANGUAGE_NONE][0]['tid'] = (int) $category->tid;
         taxonomy_term_save($term);
+
+        // Collect application values.
+        foreach ($result_applications as $key => $application) {
+          if (!empty($row[$key])) {
+            $applications[$application][$title][$name] = $row[$key];
+          }
+        }
       }
     }
+  }
+
+  // Create/update applications.
+  foreach ($applications as $application_name => $application_types) {
+    $query = new EntityFieldQuery();
+    $entities = $query->entityCondition('entity_type', 'node')
+      ->propertyCondition('type', 'application')
+      ->propertyCondition('title', $application_name)
+      ->propertyCondition('status', 1)
+      ->range(0,1)
+      ->execute();
+    if (!empty($entities['node'])) {
+      $results = array_keys($entities['node']);
+      $nid = array_shift($results);
+      $node = node_load($nid);
+    }
+    else {
+      $node = new \stdClass();
+      $node->type = 'application';
+      $node->status = 1;
+      $node->title = $application_name;
+    }
+
+    // Set application functions.
+    foreach ($application_types as $application_type => $functions) {
+      $vocabulary = mt_import_taxonomy_vocabulary_load_or_create_by_title($application_type);
+      $application_field = "field_app_{$vocabulary->machine_name}";
+      $node->{$application_field} = NULL;
+
+      foreach ($functions as $function => $value) {
+        if ($value) {
+          $term = mt_import_taxonomy_term_load_or_create_by_name($function, $vocabulary);
+          $node->{$application_field}[LANGUAGE_NONE][]['tid'] = (int) $term->tid;
+        }
+      }
+    }
+    node_save($node);
   }
 }
 

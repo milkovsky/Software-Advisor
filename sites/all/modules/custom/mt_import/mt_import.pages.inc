@@ -9,6 +9,12 @@
  * Import form.
  */
 function mt_import_form($form, &$form_state) {
+  $form['info'] = array(
+    '#type' => 'item',
+    '#markup' => t('Submit to import applications and functions from !file.', array(
+      '!file' => drupal_get_path('module', 'mt_import') . '/import/import.xlsx',
+    )),
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Import'),

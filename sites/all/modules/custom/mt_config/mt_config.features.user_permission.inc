@@ -132,13 +132,6 @@ function mt_config_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'administer dependencies'.
-  $permissions['administer dependencies'] = array(
-    'name' => 'administer dependencies',
-    'roles' => array(),
-    'module' => 'conditional_fields',
-  );
-
   // Exported permission: 'administer environment indicator settings'.
   $permissions['administer environment indicator settings'] = array(
     'name' => 'administer environment indicator settings',
@@ -151,6 +144,13 @@ function mt_config_user_default_permissions() {
     'name' => 'administer features',
     'roles' => array(),
     'module' => 'features',
+  );
+
+  // Exported permission: 'administer fields'.
+  $permissions['administer fields'] = array(
+    'name' => 'administer fields',
+    'roles' => array(),
+    'module' => 'field',
   );
 
   // Exported permission: 'administer filters'.
@@ -431,6 +431,15 @@ function mt_config_user_default_permissions() {
     'name' => 'use ctools import',
     'roles' => array(),
     'module' => 'ctools',
+  );
+
+  // Exported permission: 'use text format advanced'.
+  $permissions['use text format advanced'] = array(
+    'name' => 'use text format advanced',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'filter',
   );
 
   // Exported permission: 'view own unpublished content'.

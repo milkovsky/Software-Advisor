@@ -9,7 +9,7 @@
 $conf['master_version'] = 2;
 $conf['master_modules'] = array(
   'base' => array(
-    'master_thesis_config',
+    'mt_config',
   ),
   'live' => array(),
 );

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.features.filter.inc
+ * mt_config.features.filter.inc
  */
 
 /**
  * Implements hook_filter_default_formats().
  */
-function master_thesis_config_filter_default_formats() {
+function mt_config_filter_default_formats() {
   $formats = array();
 
   // Exported format: Plain text.

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.pages_default.inc
+ * mt_config.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_handlers().
  */
-function master_thesis_config_default_page_manager_handlers() {
+function mt_config_default_page_manager_handlers() {
   $export = array();
 
   $handler = new stdClass();

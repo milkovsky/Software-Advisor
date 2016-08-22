@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.features.field_instance.inc
+ * mt_config.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function master_thesis_config_field_default_field_instances() {
+function mt_config_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'node-application-body'.
@@ -55,139 +55,8 @@ function master_thesis_config_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-application-field_bug_tracking'.
-  $field_instances['node-application-field_bug_tracking'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_bug_tracking',
-    'label' => 'Bug tracking',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 7,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_business_process'.
-  $field_instances['node-application-field_business_process'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Select business processes which can be managed by the application',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_business_process',
-    'label' => 'Business processes',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_communication'.
-  $field_instances['node-application-field_communication'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_communication',
-    'label' => 'Communication',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_continuous_integration'.
-  $field_instances['node-application-field_continuous_integration'] = array(
+  // Exported field_instance: 'node-application-field_app_crm'.
+  $field_instances['node-application-field_app_crm'] = array(
     'bundle' => 'application',
     'default_value' => NULL,
     'deleted' => 0,
@@ -208,33 +77,23 @@ function master_thesis_config_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_continuous_integration',
-    'label' => 'Continuous integration',
-    'required' => 0,
+    'field_name' => 'field_app_crm',
+    'label' => 'CRM functions',
+    'required' => FALSE,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
       'weight' => 9,
     ),
   );
 
-  // Exported field_instance: 'node-application-field_documentation'.
-  $field_instances['node-application-field_documentation'] = array(
+  // Exported field_instance: 'node-application-field_app_email_clients'.
+  $field_instances['node-application-field_app_email_clients'] = array(
     'bundle' => 'application',
     'default_value' => NULL,
     'deleted' => 0,
@@ -245,7 +104,7 @@ function master_thesis_config_field_default_field_instances() {
         'module' => 'taxonomy',
         'settings' => array(),
         'type' => 'taxonomy_term_reference_link',
-        'weight' => 6,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -255,33 +114,23 @@ function master_thesis_config_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_documentation',
-    'label' => 'Documentation',
-    'required' => 0,
+    'field_name' => 'field_app_email_clients',
+    'label' => 'Email clients functions',
+    'required' => FALSE,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 10,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-application-field_events_management'.
-  $field_instances['node-application-field_events_management'] = array(
+  // Exported field_instance: 'node-application-field_app_events_management'.
+  $field_instances['node-application-field_app_events_management'] = array(
     'bundle' => 'application',
     'default_value' => NULL,
     'deleted' => 0,
@@ -302,28 +151,166 @@ function master_thesis_config_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_events_management',
-    'label' => 'Events management',
-    'required' => 0,
+    'field_name' => 'field_app_events_management',
+    'label' => 'Events management functions',
+    'required' => FALSE,
     'settings' => array(
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-application-field_app_invoicing'.
+  $field_instances['node-application-field_app_invoicing'] = array(
+    'bundle' => 'application',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 9,
       ),
-      'type' => 'term_reference_tree',
-      'weight' => 11,
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_invoicing',
+    'label' => 'Invoicing functions',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 10,
+    ),
+  );
+
+  // Exported field_instance: 'node-application-field_app_project_management'.
+  $field_instances['node-application-field_app_project_management'] = array(
+    'bundle' => 'application',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_project_management',
+    'label' => 'Project management functions',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-application-field_app_social_collaboration'.
+  $field_instances['node-application-field_app_social_collaboration'] = array(
+    'bundle' => 'application',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_social_collaboration',
+    'label' => 'Social collaboration functions',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-application-field_app_time_tracking'.
+  $field_instances['node-application-field_app_time_tracking'] = array(
+    'bundle' => 'application',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_time_tracking',
+    'label' => 'Time tracking functions',
+    'required' => FALSE,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 7,
     ),
   );
 
@@ -374,241 +361,6 @@ function master_thesis_config_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 1,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_invoicing'.
-  $field_instances['node-application-field_invoicing'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_invoicing',
-    'label' => 'Invoicing',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 12,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_knowledge_management'.
-  $field_instances['node-application-field_knowledge_management'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 9,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_knowledge_management',
-    'label' => 'Knowledge management',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 13,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_project_management'.
-  $field_instances['node-application-field_project_management'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_project_management',
-    'label' => 'Project management',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 14,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_reporting'.
-  $field_instances['node-application-field_reporting'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 11,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_reporting',
-    'label' => 'Reporting',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 15,
-    ),
-  );
-
-  // Exported field_instance: 'node-application-field_time_tracking'.
-  $field_instances['node-application-field_time_tracking'] = array(
-    'bundle' => 'application',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 12,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_time_tracking',
-    'label' => 'Time tracking',
-    'required' => 0,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'term_reference_tree',
-      'settings' => array(
-        'cascading_selection' => 0,
-        'filter_view' => '',
-        'leaves_only' => 0,
-        'max_depth' => '',
-        'parent_term_id' => '',
-        'select_parents' => 1,
-        'start_minimized' => 0,
-        'token_display' => '',
-        'track_list' => 0,
-      ),
-      'type' => 'term_reference_tree',
-      'weight' => 16,
     ),
   );
 
@@ -1448,23 +1200,248 @@ function master_thesis_config_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-crm-field_category'.
+  $field_instances['taxonomy_term-crm-field_category'] = array(
+    'bundle' => 'crm',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-email_clients-field_category'.
+  $field_instances['taxonomy_term-email_clients-field_category'] = array(
+    'bundle' => 'email_clients',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-events_management-field_category'.
+  $field_instances['taxonomy_term-events_management-field_category'] = array(
+    'bundle' => 'events_management',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-invoicing-field_category'.
+  $field_instances['taxonomy_term-invoicing-field_category'] = array(
+    'bundle' => 'invoicing',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-project_management-field_category'.
+  $field_instances['taxonomy_term-project_management-field_category'] = array(
+    'bundle' => 'project_management',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-social_collaboration-field_category'.
+  $field_instances['taxonomy_term-social_collaboration-field_category'] = array(
+    'bundle' => 'social_collaboration',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-time_tracking-field_category'.
+  $field_instances['taxonomy_term-time_tracking-field_category'] = array(
+    'bundle' => 'time_tracking',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_category',
+    'label' => 'Category',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 1,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Bug tracking');
   t('Business processes');
+  t('CRM functions');
+  t('Category');
   t('Communication');
   t('Continuous integration');
   t('Description');
   t('Documentation');
+  t('Email clients functions');
   t('Events management');
+  t('Events management functions');
   t('Image');
   t('Invoicing');
+  t('Invoicing functions');
   t('Knowledge management');
   t('Notes');
   t('Project management');
+  t('Project management functions');
   t('Reporting');
-  t('Select business processes which can be managed by the application');
+  t('Social collaboration functions');
   t('Time tracking');
+  t('Time tracking functions');
 
   return $field_instances;
 }

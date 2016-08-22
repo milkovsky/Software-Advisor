@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.features.inc
+ * mt_config.features.inc
  */
 
 /**
  * Implements hook_ctools_plugin_api().
  */
-function master_thesis_config_ctools_plugin_api($module = NULL, $api = NULL) {
+function mt_config_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "environment_indicator" && $api == "default_environment_indicator_environments") {
     return array("version" => "1");
   }
@@ -25,7 +25,7 @@ function master_thesis_config_ctools_plugin_api($module = NULL, $api = NULL) {
 /**
  * Implements hook_node_info().
  */
-function master_thesis_config_node_info() {
+function mt_config_node_info() {
   $items = array(
     'application' => array(
       'name' => t('Application'),

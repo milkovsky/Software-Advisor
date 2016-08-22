@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.field_group.inc
+ * mt_config.field_group.inc
  */
 
 /**
  * Implements hook_field_group_info().
  */
-function master_thesis_config_field_group_info() {
+function mt_config_field_group_info() {
   $field_groups = array();
 
   $field_group = new stdClass();

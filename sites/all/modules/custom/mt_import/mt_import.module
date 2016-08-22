@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function mt_import_menu() {
+  $items['import-data'] = array(
+    'title' => 'Data importer',
+    'page arguments' => array('mt_import_form'),
+    'page callback' => 'drupal_get_form',
+    'access arguments' => array('mt import'),
+    'file' => 'mt_import.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}

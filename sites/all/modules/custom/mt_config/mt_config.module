@@ -4,4 +4,4 @@
  * Code for the Master thesis config feature.
  */
 
-include_once 'master_thesis_config.features.inc';
+include_once 'mt_config.features.inc';

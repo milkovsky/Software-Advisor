@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.features.ckeditor_profile.inc
+ * mt_config.features.ckeditor_profile.inc
  */
 
 /**
  * Implements hook_ckeditor_profile_defaults().
  */
-function master_thesis_config_ckeditor_profile_defaults() {
+function mt_config_ckeditor_profile_defaults() {
   $data = array(
     'Advanced' => array(
       'name' => 'Advanced',

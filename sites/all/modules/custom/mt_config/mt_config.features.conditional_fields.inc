@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.features.conditional_fields.inc
+ * mt_config.features.conditional_fields.inc
  */
 
 /**
  * Implements hook_conditional_fields_default_fields().
  */
-function master_thesis_config_conditional_fields_default_fields() {
+function mt_config_conditional_fields_default_fields() {
   $items = array();
 
   $items["node:application:0"] = array(

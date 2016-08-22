@@ -1,0 +1,10 @@
+name = MT Sselection Form
+core = 7.x
+package = MT
+project = mt_selection_form
+files[] = src/TmtInvestmentFormController.php
+files[] = src/TmtInvestmentFormStepBase.php
+files[] = src/TmtInvestmentFormState.php
+files[] = src/TmtInvestmentFormStepEntityForm.php
+files[] = src/TmtInvestmentFormStepUserInfoFormBase.php
+files[] = src/Steps/TmtInvestmentFormStepRegister.php

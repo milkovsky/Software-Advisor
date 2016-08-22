@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.features.user_permission.inc
+ * mt_config.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function master_thesis_config_user_default_permissions() {
+function mt_config_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'access administration menu'.
@@ -111,13 +111,6 @@ function master_thesis_config_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: 'administer advanced pane settings'.
-  $permissions['administer advanced pane settings'] = array(
-    'name' => 'administer advanced pane settings',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
   // Exported permission: 'administer blocks'.
   $permissions['administer blocks'] = array(
     'name' => 'administer blocks',
@@ -160,13 +153,6 @@ function master_thesis_config_user_default_permissions() {
     'module' => 'features',
   );
 
-  // Exported permission: 'administer fieldgroups'.
-  $permissions['administer fieldgroups'] = array(
-    'name' => 'administer fieldgroups',
-    'roles' => array(),
-    'module' => 'field_group',
-  );
-
   // Exported permission: 'administer filters'.
   $permissions['administer filters'] = array(
     'name' => 'administer filters',
@@ -207,34 +193,6 @@ function master_thesis_config_user_default_permissions() {
     'name' => 'administer nodes',
     'roles' => array(),
     'module' => 'node',
-  );
-
-  // Exported permission: 'administer page manager'.
-  $permissions['administer page manager'] = array(
-    'name' => 'administer page manager',
-    'roles' => array(),
-    'module' => 'page_manager',
-  );
-
-  // Exported permission: 'administer pane access'.
-  $permissions['administer pane access'] = array(
-    'name' => 'administer pane access',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
-  // Exported permission: 'administer panels layouts'.
-  $permissions['administer panels layouts'] = array(
-    'name' => 'administer panels layouts',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
-  // Exported permission: 'administer panels styles'.
-  $permissions['administer panels styles'] = array(
-    'name' => 'administer panels styles',
-    'roles' => array(),
-    'module' => 'panels',
   );
 
   // Exported permission: 'administer permissions'.
@@ -307,13 +265,6 @@ function master_thesis_config_user_default_permissions() {
     'module' => 'user',
   );
 
-  // Exported permission: 'change layouts in place editing'.
-  $permissions['change layouts in place editing'] = array(
-    'name' => 'change layouts in place editing',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
   // Exported permission: 'change own username'.
   $permissions['change own username'] = array(
     'name' => 'change own username',
@@ -377,76 +328,6 @@ function master_thesis_config_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete terms in funcitons_continuous_integration'.
-  $permissions['delete terms in funcitons_continuous_integration'] = array(
-    'name' => 'delete terms in funcitons_continuous_integration',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in funcitons_events_management'.
-  $permissions['delete terms in funcitons_events_management'] = array(
-    'name' => 'delete terms in funcitons_events_management',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in funcitons_invoicing'.
-  $permissions['delete terms in funcitons_invoicing'] = array(
-    'name' => 'delete terms in funcitons_invoicing',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in funcitons_knowledge_management'.
-  $permissions['delete terms in funcitons_knowledge_management'] = array(
-    'name' => 'delete terms in funcitons_knowledge_management',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in funcitons_reporting'.
-  $permissions['delete terms in funcitons_reporting'] = array(
-    'name' => 'delete terms in funcitons_reporting',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in funcitons_time_tracking'.
-  $permissions['delete terms in funcitons_time_tracking'] = array(
-    'name' => 'delete terms in funcitons_time_tracking',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in functions_bug_tracking'.
-  $permissions['delete terms in functions_bug_tracking'] = array(
-    'name' => 'delete terms in functions_bug_tracking',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in functions_communication'.
-  $permissions['delete terms in functions_communication'] = array(
-    'name' => 'delete terms in functions_communication',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in functions_documentation'.
-  $permissions['delete terms in functions_documentation'] = array(
-    'name' => 'delete terms in functions_documentation',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'delete terms in functions_project_management'.
-  $permissions['delete terms in functions_project_management'] = array(
-    'name' => 'delete terms in functions_project_management',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
   // Exported permission: 'display drupal links'.
   $permissions['display drupal links'] = array(
     'name' => 'display drupal links',
@@ -480,76 +361,6 @@ function master_thesis_config_user_default_permissions() {
     'name' => 'edit own software_selection content',
     'roles' => array(),
     'module' => 'node',
-  );
-
-  // Exported permission: 'edit terms in funcitons_continuous_integration'.
-  $permissions['edit terms in funcitons_continuous_integration'] = array(
-    'name' => 'edit terms in funcitons_continuous_integration',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in funcitons_events_management'.
-  $permissions['edit terms in funcitons_events_management'] = array(
-    'name' => 'edit terms in funcitons_events_management',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in funcitons_invoicing'.
-  $permissions['edit terms in funcitons_invoicing'] = array(
-    'name' => 'edit terms in funcitons_invoicing',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in funcitons_knowledge_management'.
-  $permissions['edit terms in funcitons_knowledge_management'] = array(
-    'name' => 'edit terms in funcitons_knowledge_management',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in funcitons_reporting'.
-  $permissions['edit terms in funcitons_reporting'] = array(
-    'name' => 'edit terms in funcitons_reporting',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in funcitons_time_tracking'.
-  $permissions['edit terms in funcitons_time_tracking'] = array(
-    'name' => 'edit terms in funcitons_time_tracking',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in functions_bug_tracking'.
-  $permissions['edit terms in functions_bug_tracking'] = array(
-    'name' => 'edit terms in functions_bug_tracking',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in functions_communication'.
-  $permissions['edit terms in functions_communication'] = array(
-    'name' => 'edit terms in functions_communication',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in functions_documentation'.
-  $permissions['edit terms in functions_documentation'] = array(
-    'name' => 'edit terms in functions_documentation',
-    'roles' => array(),
-    'module' => 'taxonomy',
-  );
-
-  // Exported permission: 'edit terms in functions_project_management'.
-  $permissions['edit terms in functions_project_management'] = array(
-    'name' => 'edit terms in functions_project_management',
-    'roles' => array(),
-    'module' => 'taxonomy',
   );
 
   // Exported permission: 'execute php code'.
@@ -622,60 +433,11 @@ function master_thesis_config_user_default_permissions() {
     'module' => 'ctools',
   );
 
-  // Exported permission: 'use ipe with page manager'.
-  $permissions['use ipe with page manager'] = array(
-    'name' => 'use ipe with page manager',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
-  // Exported permission: 'use page manager'.
-  $permissions['use page manager'] = array(
-    'name' => 'use page manager',
-    'roles' => array(),
-    'module' => 'page_manager',
-  );
-
-  // Exported permission: 'use panels caching features'.
-  $permissions['use panels caching features'] = array(
-    'name' => 'use panels caching features',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
-  // Exported permission: 'use panels dashboard'.
-  $permissions['use panels dashboard'] = array(
-    'name' => 'use panels dashboard',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
-  // Exported permission: 'use panels in place editing'.
-  $permissions['use panels in place editing'] = array(
-    'name' => 'use panels in place editing',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
-  // Exported permission: 'use panels locks'.
-  $permissions['use panels locks'] = array(
-    'name' => 'use panels locks',
-    'roles' => array(),
-    'module' => 'panels',
-  );
-
   // Exported permission: 'view own unpublished content'.
   $permissions['view own unpublished content'] = array(
     'name' => 'view own unpublished content',
     'roles' => array(),
     'module' => 'node',
-  );
-
-  // Exported permission: 'view pane admin links'.
-  $permissions['view pane admin links'] = array(
-    'name' => 'view pane admin links',
-    'roles' => array(),
-    'module' => 'panels',
   );
 
   // Exported permission: 'view revisions'.

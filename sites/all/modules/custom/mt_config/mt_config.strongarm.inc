@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.strongarm.inc
+ * mt_config.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function master_thesis_config_strongarm() {
+function mt_config_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();
@@ -35,7 +35,7 @@ function master_thesis_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'clean_url';
-  $strongarm->value = '1';
+  $strongarm->value = TRUE;
   $export['clean_url'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -227,14 +227,14 @@ function master_thesis_config_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'site_default_country';
-  $strongarm->value = 'AT';
+  $strongarm->value = '';
   $export['site_default_country'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
-  $strongarm->value = 'bootstrap';
+  $strongarm->value = 'bartik';
   $export['theme_default'] = $strongarm;
 
   $strongarm = new stdClass();

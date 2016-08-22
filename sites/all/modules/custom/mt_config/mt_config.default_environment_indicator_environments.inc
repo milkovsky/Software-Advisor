@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * master_thesis_config.default_environment_indicator_environments.inc
+ * mt_config.default_environment_indicator_environments.inc
  */
 
 /**
  * Implements hook_default_environment_indicator_environment().
  */
-function master_thesis_config_default_environment_indicator_environment() {
+function mt_config_default_environment_indicator_environment() {
   $export = array();
 
   $environment = new stdClass();

@@ -28,10 +28,8 @@
     "drupal/entityreference": "^7.1",
     "drupal/bootstrap": "7.3.*",
     "drupal/double_field": "^7.2",
-    "drupal/term_reference_tree": "^7.1",
-    "drupal/field_group": "^7.1",
-    "drupal/conditional_fields": "^7.3@alpha",
-    "drupal/panels": "^7.3"
+    "drupal/panels": "^7.3",
+    "phpoffice/phpexcel": "^1.8"
   },
   "scripts": {
     "post-create-project-cmd": ["rm README.md LICENSE .travis.yml phpunit.xml.dist CHANGELOG.txt .gitignore"]
@@ -51,11 +49,11 @@
       "www/sites/all/drush/{$name}/": ["type:drupal-drush"],
       "www/profiles/{$name}/": ["type:drupal-profile"]
     },
-    "preserve-paths": ["www/robots.txt", "www/.gitignore", "www/files", "www/sites/default", "www/sites/all"]
+    "preserve-paths": [".git", "www/.git", "www/robots.txt", "www/.gitignore", "www/files", "www/sites/default", "www/sites/all"]
   },
   "repositories": [{
     "type": "composer",
-    "url": "http://packagist.drupal-composer.org"
+    "url": "https://packagist.drupal-composer.org/"
   }, {
     "type": "package",
     "package": {

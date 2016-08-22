@@ -138,6 +138,7 @@ function mt_import_form_submit($form, &$form_state) {
  * @throws \FieldException
  */
 function mt_import_initialize_vocabulary_fields($vocabulary) {
+  // Step 1. Create fields for application node, if don't exist.
   $application_field = "field_app_{$vocabulary->machine_name}";
 
   if (!field_info_field($application_field)) {
@@ -160,7 +161,7 @@ function mt_import_initialize_vocabulary_fields($vocabulary) {
   }
 
   if (!field_info_instance('node', $application_field, 'application')) {
-    // Create category field if does not exist.
+    // Create category field instance if does not exist.
     $instance = array(
       'field_name' => $application_field,
       'label' => $vocabulary->name,
@@ -176,7 +177,9 @@ function mt_import_initialize_vocabulary_fields($vocabulary) {
     field_create_instance($instance);
   }
 
+  // Step 2. Create category field in vocabularies, if doesn't exist.
   $field_name = 'field_category';
+
   if (!field_info_field($field_name)) {
     $categories_vocabulary = mt_import_taxonomy_vocabulary_load_or_create_by_title('Categories');
     $field_base = array(
@@ -198,7 +201,7 @@ function mt_import_initialize_vocabulary_fields($vocabulary) {
   }
 
   if (!field_info_instance('taxonomy_term', $field_name, $vocabulary->machine_name)) {
-    // Create category field if does not exist.
+    // Create category field instance if does not exist.
     $instance = array(
       'field_name' => $field_name,
       'label' => 'Category',
@@ -211,6 +214,77 @@ function mt_import_initialize_vocabulary_fields($vocabulary) {
         'settings' => array(),
         'type' => 'options_select',
         'weight' => 1,
+      ),
+    );
+    field_create_instance($instance);
+  }
+
+  // Step 3. Create double field for software selection, if doesn't exist.
+  $selection_field = "field_s_{$vocabulary->machine_name}";
+
+  if (!field_info_field($selection_field)) {
+    $field_base = array(
+      'field_name' => $selection_field,
+      'type' => 'double_field',
+      'cardinality' => -1,
+      'entity_types' => array(),
+      'module' => 'double_field',
+      'settings' => array(
+        'first' => array(
+          'maxlength' => 10,
+          'precision' => 10,
+          'scale' => 2,
+          'size' => 'tiny',
+          'type' => 'int',
+        ),
+        'second' => array(
+          'maxlength' => 10,
+          'precision' => 10,
+          'scale' => 2,
+          'size' => 'tiny',
+          'type' => 'int',
+        ),
+      ),
+    );
+    field_create_field($field_base);
+  }
+
+  if (!field_info_instance('node', $selection_field, 'application')) {
+    // Create selection field instance if does not exist.
+    $instance = array(
+      'field_name' => $selection_field,
+      'label' => $vocabulary->name,
+      'bundle' => 'software_selection',
+      'entity_type' => 'node',
+      'widget' => array(
+        'active' => 1,
+        'module' => 'double_field',
+        'type' => 'textfield_&_textfield',
+        'settings' => array(
+          'first' => array(
+            'general' => array(
+              'prefix' => '',
+              'required' => 1,
+              'suffix' => '',
+            ),
+            'textfield' => array(
+              'placeholder' => '',
+              'size' => 10,
+            ),
+          ),
+          'inline' => 1,
+          'second' => array(
+            'general' => array(
+              'prefix' => '',
+              'required' => 1,
+              'suffix' => '',
+            ),
+            'textfield' => array(
+              'placeholder' => '',
+              'size' => 10,
+            ),
+          ),
+        ),
       ),
     );
     field_create_instance($instance);

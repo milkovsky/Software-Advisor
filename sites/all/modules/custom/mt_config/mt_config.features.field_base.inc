@@ -213,39 +213,6 @@ function mt_config_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_business_process'.
-  $field_bases['field_business_process'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_business_process',
-    'indexes' => array(
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'list',
-    'settings' => array(
-      'allowed_values' => array(
-        'bug_tracking' => 'Bug tracking',
-        'communication' => 'Communication',
-        'continuous_integration' => 'Continuous integration',
-        'documentation' => 'Documentation',
-        'events_management' => 'Events management',
-        'invoicing' => 'Invoicing',
-        'knowledge_management' => 'Knowledge management',
-        'project_management' => 'Project management',
-        'reporting' => 'Reporting',
-        'time_tracking' => 'Time tracking',
-      ),
-      'allowed_values_function' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'list_text',
-  );
-
   // Exported field_base: 'field_category'.
   $field_bases['field_category'] = array(
     'active' => 1,
@@ -294,13 +261,13 @@ function mt_config_field_default_field_bases() {
     'type' => 'image',
   );
 
-  // Exported field_base: 'field_s_bug_tracking'.
-  $field_bases['field_s_bug_tracking'] = array(
+  // Exported field_base: 'field_s_crm'.
+  $field_bases['field_s_crm'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_s_bug_tracking',
+    'field_name' => 'field_s_crm',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'double_field',
@@ -324,43 +291,13 @@ function mt_config_field_default_field_bases() {
     'type' => 'double_field',
   );
 
-  // Exported field_base: 'field_s_communication'.
-  $field_bases['field_s_communication'] = array(
+  // Exported field_base: 'field_s_email_clients'.
+  $field_bases['field_s_email_clients'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_s_communication',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'double_field',
-    'settings' => array(
-      'first' => array(
-        'maxlength' => 255,
-        'precision' => 10,
-        'scale' => 2,
-        'size' => 'tiny',
-        'type' => 'int',
-      ),
-      'second' => array(
-        'maxlength' => 255,
-        'precision' => 10,
-        'scale' => 2,
-        'size' => 'tiny',
-        'type' => 'int',
-      ),
-    ),
-    'translatable' => 0,
-    'type' => 'double_field',
-  );
-
-  // Exported field_base: 'field_s_continuous_integration'.
-  $field_bases['field_s_continuous_integration'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_s_continuous_integration',
+    'field_name' => 'field_s_email_clients',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'double_field',
@@ -374,36 +311,6 @@ function mt_config_field_default_field_bases() {
       ),
       'second' => array(
         'maxlength' => 10,
-        'precision' => 10,
-        'scale' => 2,
-        'size' => 'tiny',
-        'type' => 'int',
-      ),
-    ),
-    'translatable' => 0,
-    'type' => 'double_field',
-  );
-
-  // Exported field_base: 'field_s_documentation'.
-  $field_bases['field_s_documentation'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_s_documentation',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'double_field',
-    'settings' => array(
-      'first' => array(
-        'maxlength' => 255,
-        'precision' => 10,
-        'scale' => 2,
-        'size' => 'tiny',
-        'type' => 'int',
-      ),
-      'second' => array(
-        'maxlength' => 255,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
@@ -426,14 +333,14 @@ function mt_config_field_default_field_bases() {
     'module' => 'double_field',
     'settings' => array(
       'first' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
         'type' => 'int',
       ),
       'second' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
@@ -456,44 +363,14 @@ function mt_config_field_default_field_bases() {
     'module' => 'double_field',
     'settings' => array(
       'first' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
         'type' => 'int',
       ),
       'second' => array(
-        'maxlength' => 255,
-        'precision' => 10,
-        'scale' => 2,
-        'size' => 'tiny',
-        'type' => 'int',
-      ),
-    ),
-    'translatable' => 0,
-    'type' => 'double_field',
-  );
-
-  // Exported field_base: 'field_s_knowledge_management'.
-  $field_bases['field_s_knowledge_management'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_s_knowledge_management',
-    'indexes' => array(),
-    'locked' => 0,
-    'module' => 'double_field',
-    'settings' => array(
-      'first' => array(
-        'maxlength' => 255,
-        'precision' => 10,
-        'scale' => 2,
-        'size' => 'tiny',
-        'type' => 'int',
-      ),
-      'second' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
@@ -516,14 +393,14 @@ function mt_config_field_default_field_bases() {
     'module' => 'double_field',
     'settings' => array(
       'first' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
         'type' => 'int',
       ),
       'second' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
@@ -534,26 +411,26 @@ function mt_config_field_default_field_bases() {
     'type' => 'double_field',
   );
 
-  // Exported field_base: 'field_s_reporting'.
-  $field_bases['field_s_reporting'] = array(
+  // Exported field_base: 'field_s_social_collaboration'.
+  $field_bases['field_s_social_collaboration'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_s_reporting',
+    'field_name' => 'field_s_social_collaboration',
     'indexes' => array(),
     'locked' => 0,
     'module' => 'double_field',
     'settings' => array(
       'first' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
         'type' => 'int',
       ),
       'second' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
@@ -576,14 +453,14 @@ function mt_config_field_default_field_bases() {
     'module' => 'double_field',
     'settings' => array(
       'first' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',
         'type' => 'int',
       ),
       'second' => array(
-        'maxlength' => 255,
+        'maxlength' => 10,
         'precision' => 10,
         'scale' => 2,
         'size' => 'tiny',

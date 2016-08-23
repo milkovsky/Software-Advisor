@@ -53,7 +53,7 @@ abstract class SoftwareSelectionStepBase {
     $this->controller = $controller;
     $this->stepId = $state->activeStep;
     $steps = $controller->getStepDefinition();
-    $this->title = $steps[$this->stepId];
+    $this->title = $steps[$this->stepId]['title'];
   }
 
   /**
@@ -91,6 +91,8 @@ abstract class SoftwareSelectionStepBase {
    *   The modified form.
    */
   public function buildForm($form, &$form_state) {
+    drupal_set_title('Software selection: ' . $this->getTitle());
+    $form['#attributes']['class'][] = 'selection-form';
     $this->populateFormState($form, $form_state);
     return $form;
   }
@@ -125,6 +127,62 @@ abstract class SoftwareSelectionStepBase {
    */
   protected function populateFormState($form, &$form_state) {
     $form_state['controller'] = $this->controller;
+  }
+
+  /**
+   * Adds the default button to the form.
+   *
+   * @param array $form
+   *   The form where to add the elements.
+   * @param array $form_state
+   *   The form state.
+   *
+   * @return array
+   *   The updated form.
+   */
+  protected function buildButtons($form, &$form_state) {
+    $form['actions'] = array(
+      '#type' => 'actions',
+    );
+    // Keep the step used for reference.
+    $form['#step-id'] = $this->getStepId();
+
+    $form['actions']['cancel'] = array(
+      '#type' => 'submit',
+      '#name' => 'cancel',
+      '#value' => t('Cancel'),
+      '#limit_validation_errors' => array() ,
+    );
+
+    // Detect index of current step to manage action buttons display.
+    $steps = $this->controller->getStepDefinition();
+    $keys = array_keys($steps);
+    $step_index = array_search($this->getStepId(), $keys);
+
+    // Hide back button on the first step.
+    if ($step_index > 0) {
+      $form['actions']['back'] = array(
+        '#type' => 'submit',
+        '#name' => 'back',
+        '#value' => t('Back'),
+        '#attributes' => array('class' => array('btn', 'btn-primary')),
+        '#limit_validation_errors' => array(),
+      );
+    }
+
+    $form['actions']['next'] = array(
+      '#type' => 'submit',
+      '#name' => 'next',
+      '#value' => t('Next'),
+      '#attributes' => array('class' => array('btn', 'btn-success')),
+    );
+
+    // Change "Next" button text on the last step.
+    if ($step_index == count($steps) - 1) {
+      $form['actions']['next']['#value'] = t('Finish');
+    }
+
+    return $form;
   }
 
 }

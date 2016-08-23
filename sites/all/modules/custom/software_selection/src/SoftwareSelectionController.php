@@ -123,11 +123,13 @@ class SoftwareSelectionController {
 
       default:
         // Move to the next step.
-        $next_step = $keys[$step_index + 1];
-        if (!isset($this->stepDefinition[$next_step])) {
-          $form_state['redirect'] = 'software-selection/success';
+        if (!isset($keys[$step_index + 1])) {
+          node_save($this->state->software_selection);
+          $this->clearStateData();
+          $form_state['redirect'] = 'node/' . $this->state->software_selection->nid;
         }
         else {
+          $next_step = $keys[$step_index + 1];
           $this->state->activeStep = $next_step;
         }
         $this->saveStateData();
@@ -144,9 +146,16 @@ class SoftwareSelectionController {
     $this->stepDefinition = array();
     foreach ($steps as $step) {
       if (isset($names[$step])) {
-        $this->stepDefinition[$step] = $names[$step];
+        $this->stepDefinition[$step] = array(
+          'title' => $names[$step],
+          'handler' => __NAMESPACE__ . '\SoftwareSelectionStepBusinessProcess',
+        );
       }
     }
+    $this->stepDefinition['metadata'] = array(
+      'title' => 'Final step',
+      'handler' => __NAMESPACE__ . '\SoftwareSelectionStepMetadata',
+    );
   }
 
   /**
@@ -204,58 +213,10 @@ class SoftwareSelectionController {
    */
   protected function getStep($step) {
     if (!isset($this->steps[$step])) {
-      $this->steps[$step] = new SoftwareSelectionStep($this->state, $this);
+      $handler = $this->stepDefinition[$step]['handler'];
+      $this->steps[$step] = new $handler($this->state, $this);
     }
     return $this->steps[$step];
-  }
-
-  /**
-   * @deprecated
-   *
-   * Gets currently shown steps (all steps up to the currently active step).
-   *
-   * @return SoftwareSelectionStepBase[]
-   *   An ordered array of step objects, keyed by step id.
-   */
-  public function getCurrentStep() {
-    $active_step = $this->state->activeStep;
-
-    $steps = array();
-    foreach ($this->stepDefinition as $step_class) {
-      $step = $this->getStep($step_class);
-      $steps[$step->getStepId()] = $step;
-
-      if ($step_class == $active_step) {
-        break;
-      }
-    }
-
-    return $steps;
-  }
-
-  /**
-   * @deprecated
-   *
-   * Gets non-current steps, i.e. steps becoming active later.
-   *
-   * @return SoftwareSelectionStepBase[]
-   *   An ordered array of step objects, keyed by step id.
-   */
-  public function getLaterSteps() {
-    $active_step = $this->state->activeStep;
-
-    $steps_are_later = FALSE;
-    $steps = array();
-    foreach ($this->stepDefinition as $step_class) {
-      if ($steps_are_later) {
-        $step = $this->getStep($step_class);
-        $steps[$step->getStepId()] = $step;
-      }
-      if ($step_class == $active_step) {
-        $steps_are_later = TRUE;
-      }
-    }
-    return $steps;
   }
 
   /**

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7bd03f18c02db2acfe1fb396652194a7",
-    "content-hash": "ddcaba9bb8442f7193976d5ed1897560",
+    "hash": "9bf96b560854a4389b2aab02178a4eb6",
+    "content-hash": "c023ac64fb3f3f716d39cd07db9b43c6",
     "packages": [
         {
             "name": "ckeditor/ckeditor",
@@ -628,6 +628,37 @@
             "description": "Handles general site configuration for administrators.",
             "homepage": "https://www.drupal.org/project/drupal",
             "time": "2016-07-07 18:25:52"
+        },
+        {
+            "name": "drupal/elements",
+            "version": "7.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/elements",
+                "reference": "69df29662fd4d61bcd06bc5924a793740d8aff06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/elements-7.x-1.4.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/drupal": "7.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-7.x-1.x": "7.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a library of Form API elements.",
+            "homepage": "https://www.drupal.org/project/elements",
+            "time": "2013-06-08 04:53:47"
         },
         {
             "name": "drupal/entity",

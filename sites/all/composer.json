@@ -29,7 +29,8 @@
     "drupal/bootstrap": "7.3.*",
     "drupal/double_field": "^7.2",
     "drupal/panels": "^7.3",
-    "phpoffice/phpexcel": "^1.8"
+    "phpoffice/phpexcel": "^1.8",
+    "drupal/elements": "^7.1"
   },
   "scripts": {
     "post-create-project-cmd": ["rm README.md LICENSE .travis.yml phpunit.xml.dist CHANGELOG.txt .gitignore"]

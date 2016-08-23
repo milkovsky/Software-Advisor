@@ -77,7 +77,49 @@ class SoftwareSelectionStep extends SoftwareSelectionStepBase {
   public function buildForm($form, &$form_state) {
     $form = parent::buildForm($form, $form_state);
 
-    $form['summary']['#markup'] = $this->getTitle();
+    $form['#attributes']['class'][] = 'selection-form';
+
+    $entity = isset($form_state['entity']) ? $form_state['entity'] : $this->getEntity();
+    $form_state['entity'] = $entity;
+
+    #$form['summary']['#markup'] = $this->getTitle();
+    drupal_set_title('Software selection: ' . $this->getTitle());
+
+    $tree = SoftwareSelectionUtil::getFunctionsTree($this->getStepId());
+    foreach ($tree as $category_tid => $functions) {
+      $category = taxonomy_term_load($category_tid);
+      $form[$category_tid] = array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('selection-form--category panel panel-default')),
+        'header' => array(
+          '#type' => 'container',
+          '#attributes' => array('class' => array('panel-heading')),
+          'value' => array(
+            '#type' => 'rangefield',
+            '#title' => $category->name,
+            '#step' => 1,
+            '#min' => 0,
+            '#max' => 5,
+            '#default_value' => 0,
+          ),
+        ),
+      );
+      $form[$category_tid]['body'] = array(
+        '#type' => 'container',
+        '#attributes' => array('class' => array('panel-body')),
+      );
+      foreach ($functions as $tid => $function) {
+        $form[$category_tid]['body'][$tid] = array(
+          '#type' => 'rangefield',
+          '#title' => $function,
+          '#step' => 1,
+          '#min' => 0,
+          '#max' => 5,
+          '#default_value' => 0,
+        );
+      }
+    }
+
     $form = $this->buildButtons($form, $form_state);
     return $form;
   }
@@ -95,6 +137,10 @@ class SoftwareSelectionStep extends SoftwareSelectionStepBase {
   public function submitForm($form, &$form_state) {
     $a = 2;
     #parent::submitForm($form, $form_stat);
+
+    /*if ($this->save) {
+      entity_save($this->entityType, $form_state['entity']);
+    }*/
   }
 
 }

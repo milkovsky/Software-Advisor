@@ -1,0 +1,37 @@
+input[type="range"],
+input[type="range"].form-control:focus {
+  border: inherit;
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+  box-shadow: inherit;
+  padding: 0;
+}
+
+.selection-form .panel-heading {
+  margin: 0;
+}
+
+.selection-form--category .control-label {
+  min-width: 15em;
+}
+
+.selection-form--category .form-range {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 1em;
+}
+
+.selection-form--category .form-type-rangefield {
+  padding: 0.5em;
+  margin: 0;
+}
+
+.selection-form--category .panel-body .form-type-rangefield:hover {
+  background: #efefef;
+}
+
+.selection-form--category .panel-heading .form-type-rangefield {
+  padding-top: 0;
+  padding-bottom: 0;
+}

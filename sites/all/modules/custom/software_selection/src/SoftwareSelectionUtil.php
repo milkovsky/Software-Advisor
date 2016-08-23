@@ -42,4 +42,23 @@ class SoftwareSelectionUtil {
     return preg_replace('@[^a-z0-9-]+@','_', strtolower($name));
   }
 
+  /**
+   * Returns functions tree for a business process.
+   *
+   * @param string $business_process
+   *   Business process vocabulary machine name.
+   *
+   * @return string[]
+   *   Functions tree for a business process.
+   */
+  public static function getFunctionsTree($business_process) {
+    $vocabulary = taxonomy_vocabulary_machine_name_load($business_process);
+    $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+    $tree = array();
+    foreach ($terms as $tid => $term) {
+      $tree[$term->field_category[LANGUAGE_NONE][0]['tid']][$tid] = $term->name;
+    }
+    return $tree;
+  }
+
 }

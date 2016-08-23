@@ -8,7 +8,7 @@
 namespace Drupal\software_selection;
 
 /**
- * Class for accessing and holding investment state related information.
+ * Class for accessing and holding selection state related information.
  *
  * This state is kept across multiple forms.
  */
@@ -22,7 +22,7 @@ class SoftwareSelectionState implements \Serializable {
   public $user;
 
   /**
-   * The investment entity.
+   * The selection entity.
    *
    * @var \stdClass
    */
@@ -36,7 +36,7 @@ class SoftwareSelectionState implements \Serializable {
   public $activeStep;
 
   /**
-   * Creates a new investment form state at the beginning of a new investment.
+   * Creates a new selection form state at the beginning of a new selection.
    *
    * @param string $step
    *   The step class to start with.
@@ -73,7 +73,6 @@ class SoftwareSelectionState implements \Serializable {
    * {@inheritdoc}
    */
   public function unserialize($serialized) {
-    // Payment may be id or object.
     list($step_class, $uid, $software_selection) = unserialize($serialized);
 
     if ($uid != $GLOBALS['user']->uid) {

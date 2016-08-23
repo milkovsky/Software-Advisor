@@ -8,7 +8,7 @@
 namespace Drupal\software_selection;
 
 /**
- * Main class for controlling and rendering the investment form.
+ * Main class for controlling and rendering the selection form.
  *
  * The form assumes that login already happened in a subsequent steps. The login
  * and registration form is not part of this, as it is handled differently: You
@@ -17,7 +17,7 @@ namespace Drupal\software_selection;
 class SoftwareSelectionController {
 
   /**
-   * The investment state.
+   * The selection state.
    *
    * @var SoftwareSelectionState
    */
@@ -31,7 +31,7 @@ class SoftwareSelectionController {
   protected $stepDefinition = array();
 
   /**
-   * Static cache of initialized investment state objects.
+   * Static cache of initialized selection state objects.
    *
    * @var SoftwareSelectionStepBase[]
    */
@@ -73,14 +73,7 @@ class SoftwareSelectionController {
    * @return array
    */
   protected function renderStepForm(SoftwareSelectionStepBase $step) {
-    $step_title = $step->getTitle();
-    $step_form = drupal_get_form('software_selection_step_form', $step);
-
-    return array(
-      '#prefix' => '<section id="' . $step->getStepId() . '" class="invest-step">' . $step_title,
-      '#suffix' => '</section>',
-      'form' => $step_form,
-    );
+    return drupal_get_form('software_selection_step_form', $step);
   }
 
   /**
@@ -92,16 +85,6 @@ class SoftwareSelectionController {
    *   The form state.
    */
   public function validateForm($form, &$form_state) {
-    if (!empty($form_state['triggering_element']['#step_class'])) {
-      // Update the active step based upon the pressed element.
-      $this->state->activeStep = $form_state['triggering_element']['#step_class'];
-    }
-    // Fallback for non-submit elements ajax calls. It is necessary because
-    // '#step_class' is not working for 'radios' and 'textfield' ajax calls.
-    else if (!empty($form_state['triggering_element']['#ajax']['step_class'])) {
-      // Update the active step based upon the pressed element.
-      $this->state->activeStep = $form_state['triggering_element']['#ajax']['step_class'];
-    }
     $this->getActiveStep()->validateForm($form, $form_state);
   }
 
@@ -119,27 +102,50 @@ class SoftwareSelectionController {
     $this->getActiveStep()->submitForm($form, $form_state);
 
     // After successful submission move on to next step.
-    $step_index = array_search($this->state->activeStep, $this->stepDefinition);
+    $keys = array_keys($this->stepDefinition);
+    $step_index = array_search($this->state->activeStep, $keys);
 
-    if (!isset($this->stepDefinition[$step_index + 1])) {
-      $form_state['redirect'] = 'invest/' . $this->state->project->node->nid . '/success';
-    }
-    else {
-      $this->state->activeStep = $this->stepDefinition[$step_index + 1];
-    }
+    switch ($form_state['triggering_element']['#name']) {
+      case 'cancel':
+        // Clear saved data, move to start.
+        $this->clearStateData();
+        $form_state['redirect'] = 'software-selection/start';
+        break;
 
-    $this->saveStateData();
+      case 'back':
+        // Move to the previous step.
+        $previous_step = $keys[$step_index - 1];
+        if (isset($this->stepDefinition[$previous_step])) {
+          $this->state->activeStep = $previous_step;
+        }
+        $this->saveStateData();
+        break;
+
+      default:
+        // Move to the next step.
+        $next_step = $keys[$step_index + 1];
+        if (!isset($this->stepDefinition[$next_step])) {
+          $form_state['redirect'] = 'software-selection/success';
+        }
+        else {
+          $this->state->activeStep = $next_step;
+        }
+        $this->saveStateData();
+        break;
+    }
   }
 
   /**
    * Initializes form steps.
    */
   protected function initSteps() {
+    $steps = $_SESSION['software_selection_business_processes'];
     $names = SoftwareSelectionUtil::getBusinessProcessNames();
     $this->stepDefinition = array();
-    foreach ($names as $name) {
-      $step_machine_name = SoftwareSelectionUtil::toMachineName($name);
-      $this->stepDefinition[$step_machine_name] = $name;
+    foreach ($steps as $step) {
+      if (isset($names[$step])) {
+        $this->stepDefinition[$step] = $names[$step];
+      }
     }
   }
 
@@ -147,20 +153,23 @@ class SoftwareSelectionController {
    * Initializes the form state.
    *
    * It fetches the state from cache or creates a new one if necessary.
+   *
+   * @param boolean $reset
+   *   (optional) True to reset state.
    */
-  protected function initState() {
+  protected function initState($reset = FALSE) {
     // Load state from cache if existing.
     ctools_include('object-cache');
     $this->state = ctools_object_cache_get('submission', 'software_selection');
 
-    if (!isset($this->state)) {
+    if ($reset || !isset($this->state)) {
       $step = key($this->stepDefinition);
       $this->state = SoftwareSelectionState::create($step);
     }
   }
 
   /**
-   * Saves the current investment state for later usage.
+   * Saves the current selection state for later usage.
    */
   public function saveStateData() {
     ctools_include('object-cache');
@@ -168,7 +177,7 @@ class SoftwareSelectionController {
   }
 
   /**
-   * Clears any saved investment state data.
+   * Clears any saved selection state data.
    */
   public function clearStateData() {
     ctools_include('object-cache');
@@ -225,6 +234,8 @@ class SoftwareSelectionController {
   }
 
   /**
+   * @deprecated
+   *
    * Gets non-current steps, i.e. steps becoming active later.
    *
    * @return SoftwareSelectionStepBase[]
@@ -268,7 +279,7 @@ class SoftwareSelectionController {
   }
 
   /**
-   * Returns the investment state.
+   * Returns the selection state.
    *
    * @return SoftwareSelectionState
    *   The state.

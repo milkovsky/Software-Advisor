@@ -51,7 +51,7 @@ class SoftwareSelectionStepRisk extends SoftwareSelectionStepEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function getSubmitLabel() {
+  public function getSubmitNextLabel() {
     return t('Submit');
   }
 

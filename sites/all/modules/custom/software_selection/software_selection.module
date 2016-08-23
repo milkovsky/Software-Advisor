@@ -110,6 +110,7 @@ function software_selection_step_form($form, &$form_state, SoftwareSelectionStep
  */
 function software_selection_step_form_validate($form, &$form_state) {
   if (isset($form_state['controller'])) {
+    /** @var SoftwareSelectionController $form_controller */
     $form_controller = $form_state['controller'];
     $form_controller->validateForm($form, $form_state);
   }
@@ -120,31 +121,8 @@ function software_selection_step_form_validate($form, &$form_state) {
  */
 function software_selection_step_form_submit($form, &$form_state) {
   if (isset($form_state['controller'])) {
+    /** @var SoftwareSelectionController $form_controller */
     $form_controller = $form_state['controller'];
     $form_controller->submitForm($form, $form_state);
   }
-}
-
-/**
- * Ajax callback for reloading the whole form.
- */
-function software_selection_reload_form($form, $form_state) {
-  if (isset($form_state['controller'])) {
-    $form_controller = $form_state['controller'];
-    /** @var SoftwareSelectionController $form_controller */
-    return $form_controller->getActiveStep()->getAjaxCommands($form, $form_state);
-  }
-}
-
-/**
- * Defines #ajax properties.
- */
-function software_selection_default_ajax($form, &$form_state, $wrapper_id, $effect = 'fade') {
-  $form_state['ajax_form_wrapper_id'] = $wrapper_id;
-  return array(
-    'callback' => 'software_selection_reload_form',
-    'wrapper' => $form_state['ajax_form_wrapper_id'],
-    'effect' => $effect,
-    'speed' => 'fast',
-  );
 }

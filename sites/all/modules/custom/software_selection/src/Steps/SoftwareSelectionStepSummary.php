@@ -50,7 +50,7 @@ class SoftwareSelectionStepSummary extends SoftwareSelectionStepEntityForm {
   /**
    * {@inheritdoc}
    */
-  public function getSubmitLabel() {
+  public function getSubmitNextLabel() {
     return t('Save and continue');
   }
 

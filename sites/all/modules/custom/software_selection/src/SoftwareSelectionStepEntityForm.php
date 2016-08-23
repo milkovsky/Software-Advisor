@@ -73,7 +73,7 @@ abstract class SoftwareSelectionStepEntityForm extends SoftwareSelectionStepBase
       );
     }
 
-    $form = $this->addDefaultButton($form, $form_state);
+    $form = $this->buildButtons($form, $form_state);
     return $form;
   }
 

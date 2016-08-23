@@ -12,6 +12,12 @@ use Drupal\software_selection\SoftwareSelectionUtil;
  * Page callback for selection page.
  */
 function software_selection_start_form($form, &$form_state) {
+  $controller = SoftwareSelectionController::create();
+  if ($controller->getState()) {
+    // Redirect to the selection form is it is already in progress.
+    drupal_goto('software-selection');
+  }
+
   $form['info'] = array(
     '#type' => 'item',
     // @todo Add intro text with intro and instructions about the selection.
@@ -25,6 +31,10 @@ function software_selection_start_form($form, &$form_state) {
     '#options' => $names,
     '#required' => TRUE,
   );
+  // Populate values is they were already selected before.
+  if (isset($_SESSION['software_selection_business_processes'])) {
+    $form['business_processes']['#default_value'] = $_SESSION['software_selection_business_processes'];
+  }
 
   $form['submit'] = array(
     '#type' => 'submit',
@@ -54,6 +64,7 @@ function software_selection_page() {
 }
 
 /**
+ * @todo
  * Page callback for successful investments.
  *
  * @param $project_node

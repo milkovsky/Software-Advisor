@@ -42,7 +42,7 @@ class SoftwareSelectionStepCompetences extends SoftwareSelectionStepUserInfoForm
   /**
    * {@inheritdoc}
    */
-  public function getSubmitLabel() {
+  public function getSubmitNextLabel() {
     return t('Save and continue');
   }
 

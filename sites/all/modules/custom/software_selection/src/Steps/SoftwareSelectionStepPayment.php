@@ -42,7 +42,7 @@ class SoftwareSelectionStepPayment extends SoftwareSelectionStepBase {
   /**
    * {@inheritdoc}
    */
-  public function getSubmitLabel() {
+  public function getSubmitNextLabel() {
     return $this->isRetryPage() ? t('Pay now') : t('Invest now');
   }
 
@@ -120,7 +120,7 @@ class SoftwareSelectionStepPayment extends SoftwareSelectionStepBase {
       ),
       'type' => 'setting',
     );
-    $form = $this->addDefaultButton($form, $form_state);
+    $form = $this->buildButtons($form, $form_state);
 
     // Disable ajax in the last step as payment my trigger an off-site redirect
     // which does not work so nice during ajax requests...

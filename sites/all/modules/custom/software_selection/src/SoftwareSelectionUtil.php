@@ -23,7 +23,7 @@ class SoftwareSelectionUtil {
       if ($vocabulary->machine_name == 'categories') {
         continue;
       }
-      $names[] = $vocabulary->name;
+      $names[$vocabulary->machine_name] = $vocabulary->name;
     }
     
     return $names;

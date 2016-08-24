@@ -8,11 +8,11 @@
 /**
  * Import form.
  */
-function mt_import_form($form, &$form_state) {
+function software_advisor_import_form($form, &$form_state) {
   $form['info'] = array(
     '#type' => 'item',
     '#markup' => t('Submit to import applications and functions from !file.', array(
-      '!file' => drupal_get_path('module', 'mt_import') . '/import/import.xlsx',
+      '!file' => drupal_get_path('module', 'software_advisor_import') . '/import/import.xlsx',
     )),
   );
   $form['submit'] = array(
@@ -25,8 +25,8 @@ function mt_import_form($form, &$form_state) {
 /**
  * Import form submit callback.
  */
-function mt_import_form_submit($form, &$form_state) {
-  $results = mt_import_get_contents();
+function software_advisor_import_form_submit($form, &$form_state) {
+  $results = software_advisor_import_get_contents();
 
   // Set true to remove all the vocabularies first,
   $clear = FALSE;
@@ -42,16 +42,16 @@ function mt_import_form_submit($form, &$form_state) {
 
   foreach ($results as $title => $rows) {
     if ($clear) {
-      $machine_name = mt_import_get_machine_name($title);
+      $machine_name = software_advisor_import_get_machine_name($title);
       if ($vocabulary = taxonomy_vocabulary_machine_name_load($machine_name)) {
         taxonomy_vocabulary_delete($vocabulary->vid);
       }
     }
 
-    $vocabulary = mt_import_taxonomy_vocabulary_load_or_create_by_title("$title functions");
-    $categories_vocabulary = mt_import_taxonomy_vocabulary_load_or_create_by_title('Categories');
+    $vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title("$title functions");
+    $categories_vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title('Categories');
 
-    mt_import_initialize_vocabulary_fields($vocabulary);
+    software_advisor_import_initialize_vocabulary_fields($vocabulary);
 
     $category = NULL;
     $result_applications = NULL;
@@ -71,12 +71,12 @@ function mt_import_form_submit($form, &$form_state) {
       if (!isset($row['B'])) {
         // Save category.
         $name = $row['A'];
-        $category = mt_import_taxonomy_term_load_or_create_by_name($name, $categories_vocabulary);
+        $category = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $categories_vocabulary);
       }
       else {
         // Add 'function' term and assign function's category.
         $name = $row['A'];
-        $term = mt_import_taxonomy_term_load_or_create_by_name($name, $vocabulary);
+        $term = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $vocabulary);
         $term->field_category[LANGUAGE_NONE][0]['tid'] = (int) $category->tid;
         taxonomy_term_save($term);
 
@@ -113,13 +113,13 @@ function mt_import_form_submit($form, &$form_state) {
 
     // Set application functions.
     foreach ($application_types as $application_type => $functions) {
-      $vocabulary = mt_import_taxonomy_vocabulary_load_or_create_by_title($application_type);
+      $vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title($application_type);
       $application_field = "field_app_{$vocabulary->machine_name}";
       $node->{$application_field} = NULL;
 
       foreach ($functions as $function => $value) {
         if ($value) {
-          $term = mt_import_taxonomy_term_load_or_create_by_name($function, $vocabulary);
+          $term = software_advisor_import_taxonomy_term_load_or_create_by_name($function, $vocabulary);
           $node->{$application_field}[LANGUAGE_NONE][]['tid'] = (int) $term->tid;
         }
       }
@@ -137,7 +137,7 @@ function mt_import_form_submit($form, &$form_state) {
  * @throws \Exception
  * @throws \FieldException
  */
-function mt_import_initialize_vocabulary_fields($vocabulary) {
+function software_advisor_import_initialize_vocabulary_fields($vocabulary) {
   // Step 1. Create fields for application node, if don't exist.
   $application_field = "field_app_{$vocabulary->machine_name}";
 
@@ -181,7 +181,7 @@ function mt_import_initialize_vocabulary_fields($vocabulary) {
   $field_name = 'field_category';
 
   if (!field_info_field($field_name)) {
-    $categories_vocabulary = mt_import_taxonomy_vocabulary_load_or_create_by_title('Categories');
+    $categories_vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title('Categories');
     $field_base = array(
       'field_name' => $field_name,
       'type' => 'taxonomy_term_reference',
@@ -300,9 +300,9 @@ function mt_import_initialize_vocabulary_fields($vocabulary) {
  * @throws \PHPExcel_Exception
  * @throws \PHPExcel_Reader_Exception
  */
-function mt_import_get_contents() {
+function software_advisor_import_get_contents() {
   require_once DRUPAL_ROOT . '/../vendor/autoload.php';
-  $file_name = drupal_get_path('module', 'mt_import') . '/import/import.xlsx';
+  $file_name = drupal_get_path('module', 'software_advisor_import') . '/import/import.xlsx';
   $reader = PHPExcel_IOFactory::createReaderForFile($file_name);
   $reader->setReadDataOnly();
 
@@ -329,7 +329,7 @@ function mt_import_get_contents() {
  * @return string
  *   Machine name.
  */
-function mt_import_get_machine_name($name) {
+function software_advisor_import_get_machine_name($name) {
   return preg_replace('@[^a-z0-9-]+@','_', strtolower($name));
 }
 
@@ -342,9 +342,9 @@ function mt_import_get_machine_name($name) {
  * @return object
  *   Vocabulary.
  */
-function mt_import_taxonomy_vocabulary_load_or_create_by_title($title) {
+function software_advisor_import_taxonomy_vocabulary_load_or_create_by_title($title) {
   // Remove 'functions' from title as name get's too long.
-  $machine_name = mt_import_get_machine_name(str_replace(' functions', '', $title));
+  $machine_name = software_advisor_import_get_machine_name(str_replace(' functions', '', $title));
   if (!$vocabulary = taxonomy_vocabulary_machine_name_load($machine_name)) {
     $vocabulary = (object) array(
       'name' => $title,
@@ -367,7 +367,7 @@ function mt_import_taxonomy_vocabulary_load_or_create_by_title($title) {
  * @return object
  *   Term.
  */
-function mt_import_taxonomy_term_load_or_create_by_name($name, $vocabulary) {
+function software_advisor_import_taxonomy_term_load_or_create_by_name($name, $vocabulary) {
   if ($term = taxonomy_get_term_by_name($name, $vocabulary->machine_name)) {
     $term = reset($term);
   }

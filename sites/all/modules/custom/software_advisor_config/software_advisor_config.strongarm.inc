@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.strongarm.inc
+ * software_advisor_config.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function mt_config_strongarm() {
+function software_advisor_config_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

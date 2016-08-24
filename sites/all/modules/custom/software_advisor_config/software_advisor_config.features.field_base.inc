@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.features.field_base.inc
+ * software_advisor_config.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function mt_config_field_default_field_bases() {
+function software_advisor_config_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'body'.

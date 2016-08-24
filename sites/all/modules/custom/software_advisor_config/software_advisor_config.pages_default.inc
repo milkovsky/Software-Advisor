@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.pages_default.inc
+ * software_advisor_config.pages_default.inc
  */
 
 /**
  * Implements hook_default_page_manager_handlers().
  */
-function mt_config_default_page_manager_handlers() {
+function software_advisor_config_default_page_manager_handlers() {
   $export = array();
 
   $handler = new stdClass();

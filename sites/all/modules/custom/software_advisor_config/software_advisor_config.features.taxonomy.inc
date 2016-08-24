@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.features.taxonomy.inc
+ * software_advisor_config.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function mt_config_taxonomy_default_vocabularies() {
+function software_advisor_config_taxonomy_default_vocabularies() {
   return array(
     'categories' => array(
       'name' => 'Categories',

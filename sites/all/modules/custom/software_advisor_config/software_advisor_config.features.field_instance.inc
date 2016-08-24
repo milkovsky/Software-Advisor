@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.features.field_instance.inc
+ * software_advisor_config.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function mt_config_field_default_field_instances() {
+function software_advisor_config_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'node-application-body'.

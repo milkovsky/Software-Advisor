@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.features.user_permission.inc
+ * software_advisor_config.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function mt_config_user_default_permissions() {
+function software_advisor_config_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'access administration menu'.

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.features.filter.inc
+ * software_advisor_config.features.filter.inc
  */
 
 /**
  * Implements hook_filter_default_formats().
  */
-function mt_config_filter_default_formats() {
+function software_advisor_config_filter_default_formats() {
   $formats = array();
 
   // Exported format: Advanced.

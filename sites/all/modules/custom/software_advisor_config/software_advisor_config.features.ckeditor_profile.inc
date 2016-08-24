@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * mt_config.features.ckeditor_profile.inc
+ * software_advisor_config.features.ckeditor_profile.inc
  */
 
 /**
  * Implements hook_ckeditor_profile_defaults().
  */
-function mt_config_ckeditor_profile_defaults() {
+function software_advisor_config_ckeditor_profile_defaults() {
   $data = array(
     'Advanced' => array(
       'name' => 'Advanced',

@@ -4,18 +4,20 @@
  * Code for the Master thesis config feature.
  */
 
-include_once 'mt_config.features.inc';
+include_once 'software_advisor_config.features.inc';
 
 
 /**
  * Implements hook_theme_registry_alter().
  */
-function mt_config_theme_registry_alter(&$theme_registry) {
-  $theme_registry['rangefield']['function'] = 'mt_config_theme_rangefield';
+function software_advisor_config_theme_registry_alter(&$theme_registry) {
+  $theme_registry['rangefield']['function'] = 'software_advisor_config_theme_rangefield';
 }
 
 /**
  * Returns HTML for a rangefield form element.
+ *
+ * Override original theme funciton to remove the form-text class.
  *
  * @param $variables
  *   An associative array containing:
@@ -25,7 +27,7 @@ function mt_config_theme_registry_alter(&$theme_registry) {
  *
  * @ingroup themeable
  */
-function mt_config_theme_rangefield($variables) {
+function software_advisor_config_theme_rangefield($variables) {
   $element = $variables['element'];
   $element['#attributes']['type'] = 'range';
   element_set_attributes($element, array('id', 'name', 'value', 'step', 'min', 'max'));

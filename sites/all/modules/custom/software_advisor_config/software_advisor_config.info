@@ -11,6 +11,7 @@ dependencies[] = dblog
 dependencies[] = devel
 dependencies[] = diff
 dependencies[] = double_field
+dependencies[] = elements
 dependencies[] = entity
 dependencies[] = entityreference
 dependencies[] = environment_indicator

@@ -9,10 +9,6 @@ namespace Drupal\software_advisor;
 
 /**
  * Main class for controlling and rendering the selection form.
- *
- * The form assumes that login already happened in a subsequent steps. The login
- * and registration form is not part of this, as it is handled differently: You
- * are not allowed to go back to register and/or login again.
  */
 class SoftwareAdvisorFormController {
 

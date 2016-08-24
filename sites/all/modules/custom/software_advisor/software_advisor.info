@@ -1,3 +1,4 @@
-name = MT Selection Form
+name = Software Advisor Selection Form
+description = Software Advisor core, selection form.
 core = 7.x
-package = MT
+package = Software Advisor

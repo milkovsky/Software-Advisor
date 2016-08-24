@@ -1,3 +1,4 @@
-name = MT Import
+name = Software Advisor Import
+description = Imports Applications, Functions from the import.xls file.
 core = 7.x
-package = MT
+package = Software Advisor

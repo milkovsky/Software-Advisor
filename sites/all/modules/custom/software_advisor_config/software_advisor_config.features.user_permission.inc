@@ -291,6 +291,15 @@ function software_advisor_config_user_default_permissions() {
     'module' => 'system',
   );
 
+  // Exported permission: 'administer url aliases'.
+  $permissions['administer url aliases'] = array(
+    'name' => 'administer url aliases',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'path',
+  );
+
   // Exported permission: 'administer users'.
   $permissions['administer users'] = array(
     'name' => 'administer users',
@@ -354,6 +363,13 @@ function software_advisor_config_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'create page content'.
+  $permissions['create page content'] = array(
+    'name' => 'create page content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create software_selection content'.
   $permissions['create software_selection content'] = array(
     'name' => 'create software_selection content',
@@ -361,6 +377,15 @@ function software_advisor_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
+  );
+
+  // Exported permission: 'create url aliases'.
+  $permissions['create url aliases'] = array(
+    'name' => 'create url aliases',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'path',
   );
 
   // Exported permission: 'customize ckeditor'.
@@ -381,6 +406,13 @@ function software_advisor_config_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete any page content'.
+  $permissions['delete any page content'] = array(
+    'name' => 'delete any page content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any software_selection content'.
   $permissions['delete any software_selection content'] = array(
     'name' => 'delete any software_selection content',
@@ -396,6 +428,13 @@ function software_advisor_config_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
     ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete own page content'.
+  $permissions['delete own page content'] = array(
+    'name' => 'delete own page content',
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -436,6 +475,13 @@ function software_advisor_config_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit any page content'.
+  $permissions['edit any page content'] = array(
+    'name' => 'edit any page content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any software_selection content'.
   $permissions['edit any software_selection content'] = array(
     'name' => 'edit any software_selection content',
@@ -451,6 +497,13 @@ function software_advisor_config_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
     ),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit own page content'.
+  $permissions['edit own page content'] = array(
+    'name' => 'edit own page content',
+    'roles' => array(),
     'module' => 'node',
   );
 
@@ -533,6 +586,25 @@ function software_advisor_config_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'user',
+  );
+
+  // Exported permission: 'software advisor import'.
+  $permissions['software advisor import'] = array(
+    'name' => 'software advisor import',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'software_advisor_import',
+  );
+
+  // Exported permission: 'software advisor selection'.
+  $permissions['software advisor selection'] = array(
+    'name' => 'software advisor selection',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'software_advisor',
   );
 
   // Exported permission: 'switch users'.

@@ -8,6 +8,11 @@
 use Drupal\software_advisor\SoftwareAdvisorFormController;
 use Drupal\software_advisor\SoftwareAdvisorFormStepBase;
 
+define('SOFTWARE_ADVISOR_CATEGORIES_NAME', 'Categories');
+define('SOFTWARE_ADVISOR_RATE_MIN', 0);
+define('SOFTWARE_ADVISOR_RATE_MAX', 5);
+define('SOFTWARE_ADVISOR_SUGGESTIONS_NUMBER', 5);
+
 /**
  * @todo use a proper autoloader.
  * Autoloads and registers class.

@@ -49,7 +49,7 @@ function software_advisor_import_form_submit($form, &$form_state) {
     }
 
     $vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title("$title functions");
-    $categories_vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title('Categories');
+    $categories_vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title(SOFTWARE_ADVISOR_CATEGORIES_NAME);
 
     software_advisor_import_initialize_vocabulary_fields($vocabulary);
 

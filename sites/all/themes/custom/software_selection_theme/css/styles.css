@@ -1,3 +1,4 @@
+/* Fix range widget style for bootstrap */
 input[type="range"],
 input[type="range"].form-control:focus {
   border: inherit;
@@ -8,6 +9,7 @@ input[type="range"].form-control:focus {
   padding: 0;
 }
 
+/* Selection form */
 .selection-form .panel-heading {
   margin: 0; }
   .selection-form--category .form-type-rangefield {

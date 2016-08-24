@@ -6,6 +6,7 @@
 
 include_once 'software_advisor_config.features.inc';
 
+use Drupal\software_advisor\SoftwareAdvisor;
 
 /**
  * Implements hook_theme_registry_alter().
@@ -17,15 +18,9 @@ function software_advisor_config_theme_registry_alter(&$theme_registry) {
 /**
  * Returns HTML for a rangefield form element.
  *
- * Override original theme funciton to remove the form-text class.
+ * Overrides original theme function to remove the form-text class.
  *
- * @param $variables
- *   An associative array containing:
- *   - element: An associative array containing the properties of the element.
- *     Properties used: #title, #value, #description, #min, #max, #attributes,
- *     #step.
- *
- * @ingroup themeable
+ * @see theme_rangefield()
  */
 function software_advisor_config_theme_rangefield($variables) {
   $element = $variables['element'];
@@ -36,4 +31,12 @@ function software_advisor_config_theme_rangefield($variables) {
   $output = '<input' . drupal_attributes($element['#attributes']) . ' />';
 
   return $output;
+}
+
+/**
+ * Implements hook_node_view_alter().
+ */
+function software_advisor_config_node_view_alter(&$build) {
+  $advisor = SoftwareAdvisor::create($build['#node']);
+  $build['software_advisor'] = $advisor->generateSuggestionsRenderArray();
 }

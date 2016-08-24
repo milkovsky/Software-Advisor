@@ -5,12 +5,12 @@
  * Defines abstract form step base class.
  */
 
-namespace Drupal\software_selection;
+namespace Drupal\software_advisor;
 
 /**
  * Base class for investment form steps.
  */
-abstract class SoftwareSelectionStepBase {
+abstract class SoftwareAdvisorFormStepBase {
 
   /**
    * Step title.
@@ -29,26 +29,26 @@ abstract class SoftwareSelectionStepBase {
   /**
    * The investment state.
    *
-   * @var SoftwareSelectionState
+   * @var SoftwareAdvisorFormState
    */
   protected $state;
 
   /**
    * The controller.
    *
-   * @var SoftwareSelectionController
+   * @var SoftwareAdvisorFormController
    */
   protected $controller;
 
   /**
    * Constructs the object.
    *
-   * @param SoftwareSelectionState $state
+   * @param SoftwareAdvisorFormState $state
    *   The current investment state.
-   * @param SoftwareSelectionController $controller
+   * @param SoftwareAdvisorFormController $controller
    *   The investment form controller.
    */
-  public function __construct(SoftwareSelectionState $state, SoftwareSelectionController $controller) {
+  public function __construct(SoftwareAdvisorFormState $state, SoftwareAdvisorFormController $controller) {
     $this->state = $state;
     $this->controller = $controller;
     $this->stepId = $state->activeStep;

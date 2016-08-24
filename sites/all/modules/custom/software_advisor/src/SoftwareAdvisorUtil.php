@@ -5,12 +5,12 @@
  * Defines an utility class for the selection form.
  */
 
-namespace Drupal\software_selection;
+namespace Drupal\software_advisor;
 
 /**
  * Helper class with static utility methods.
  */
-class SoftwareSelectionUtil {
+class SoftwareAdvisorUtil {
 
   /**
    * Gets names of business processes.

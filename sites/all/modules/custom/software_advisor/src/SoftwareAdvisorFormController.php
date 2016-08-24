@@ -5,7 +5,7 @@
  * Defines main Invest form controller.
  */
 
-namespace Drupal\software_selection;
+namespace Drupal\software_advisor;
 
 /**
  * Main class for controlling and rendering the selection form.
@@ -14,12 +14,12 @@ namespace Drupal\software_selection;
  * and registration form is not part of this, as it is handled differently: You
  * are not allowed to go back to register and/or login again.
  */
-class SoftwareSelectionController {
+class SoftwareAdvisorFormController {
 
   /**
    * The selection state.
    *
-   * @var SoftwareSelectionState
+   * @var SoftwareAdvisorFormState
    */
   protected $state;
 
@@ -33,7 +33,7 @@ class SoftwareSelectionController {
   /**
    * Static cache of initialized selection state objects.
    *
-   * @var SoftwareSelectionStepBase[]
+   * @var SoftwareAdvisorFormStepBase[]
    */
   protected $steps;
 
@@ -67,13 +67,13 @@ class SoftwareSelectionController {
   /**
    * Renders a single step form.
    *
-   * @param SoftwareSelectionStepBase $step
+   * @param SoftwareAdvisorFormStepBase $step
    *   The step to render.
    *
    * @return array
    */
-  protected function renderStepForm(SoftwareSelectionStepBase $step) {
-    return drupal_get_form('software_selection_step_form', $step);
+  protected function renderStepForm(SoftwareAdvisorFormStepBase $step) {
+    return drupal_get_form('software_advisor_step_form', $step);
   }
 
   /**
@@ -109,7 +109,7 @@ class SoftwareSelectionController {
       case 'cancel':
         // Clear saved data, move to start.
         $this->clearStateData();
-        $form_state['redirect'] = 'software-selection/start';
+        $form_state['redirect'] = 'software-advisor/start';
         break;
 
       case 'back':
@@ -126,6 +126,7 @@ class SoftwareSelectionController {
         if (!isset($keys[$step_index + 1])) {
           node_save($this->state->software_selection);
           $this->clearStateData();
+          drupal_set_message(t('You have successfully finished software selection! You can find your results below.'));
           $form_state['redirect'] = 'node/' . $this->state->software_selection->nid;
         }
         else {
@@ -141,20 +142,20 @@ class SoftwareSelectionController {
    * Initializes form steps.
    */
   protected function initSteps() {
-    $steps = $_SESSION['software_selection_business_processes'];
-    $names = SoftwareSelectionUtil::getBusinessProcessNames();
+    $steps = $_SESSION['software_advisor_business_processes'];
+    $names = SoftwareAdvisorUtil::getBusinessProcessNames();
     $this->stepDefinition = array();
     foreach ($steps as $step) {
       if (isset($names[$step])) {
         $this->stepDefinition[$step] = array(
           'title' => $names[$step],
-          'handler' => __NAMESPACE__ . '\SoftwareSelectionStepBusinessProcess',
+          'handler' => __NAMESPACE__ . '\SoftwareAdvisorFormStepBusinessProcess',
         );
       }
     }
     $this->stepDefinition['metadata'] = array(
       'title' => 'Final step',
-      'handler' => __NAMESPACE__ . '\SoftwareSelectionStepMetadata',
+      'handler' => __NAMESPACE__ . '\SoftwareAdvisorFormStepMetadata',
     );
   }
 
@@ -169,11 +170,11 @@ class SoftwareSelectionController {
   protected function initState($reset = FALSE) {
     // Load state from cache if existing.
     ctools_include('object-cache');
-    $this->state = ctools_object_cache_get('submission', 'software_selection');
+    $this->state = ctools_object_cache_get('submission', 'software_advisor');
 
     if ($reset || !isset($this->state)) {
       $step = key($this->stepDefinition);
-      $this->state = SoftwareSelectionState::create($step);
+      $this->state = SoftwareAdvisorFormState::create($step);
     }
   }
 
@@ -182,7 +183,7 @@ class SoftwareSelectionController {
    */
   public function saveStateData() {
     ctools_include('object-cache');
-    ctools_object_cache_set('submission', 'software_selection', $this->state);
+    ctools_object_cache_set('submission', 'software_advisor', $this->state);
   }
 
   /**
@@ -190,7 +191,7 @@ class SoftwareSelectionController {
    */
   public function clearStateData() {
     ctools_include('object-cache');
-    ctools_object_cache_clear('submission', 'software_selection');
+    ctools_object_cache_clear('submission', 'software_advisor');
   }
 
   /**
@@ -209,7 +210,7 @@ class SoftwareSelectionController {
    * @param string $step
    *   The step class for which the get the object for.
    *
-   * @return SoftwareSelectionStepBase
+   * @return SoftwareAdvisorFormStepBase
    */
   protected function getStep($step) {
     if (!isset($this->steps[$step])) {
@@ -222,7 +223,7 @@ class SoftwareSelectionController {
   /**
    * Returns the current active step object.
    *
-   * @return SoftwareSelectionStepBase
+   * @return SoftwareAdvisorFormStepBase
    *   The step object.
    */
   public function getActiveStep() {
@@ -242,7 +243,7 @@ class SoftwareSelectionController {
   /**
    * Returns the selection state.
    *
-   * @return SoftwareSelectionState
+   * @return SoftwareAdvisorFormState
    *   The state.
    */
   public function getState() {

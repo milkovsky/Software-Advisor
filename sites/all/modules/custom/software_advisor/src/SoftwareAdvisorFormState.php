@@ -2,17 +2,17 @@
 
 /**
  * @file
- * Contains SoftwareSelectionState.
+ * Contains SoftwareAdvisorFormState.
  */
 
-namespace Drupal\software_selection;
+namespace Drupal\software_advisor;
 
 /**
  * Class for accessing and holding selection state related information.
  *
  * This state is kept across multiple forms.
  */
-class SoftwareSelectionState implements \Serializable {
+class SoftwareAdvisorFormState implements \Serializable {
 
   /**
    * The user account of the user investing.
@@ -73,7 +73,7 @@ class SoftwareSelectionState implements \Serializable {
    * {@inheritdoc}
    */
   public function unserialize($serialized) {
-    list($step_class, $uid, $software_selection) = unserialize($serialized);
+    list($step_class, $uid, $software_advisor) = unserialize($serialized);
 
     if ($uid != $GLOBALS['user']->uid) {
       throw new \LogicException("This may not happen.");
@@ -81,7 +81,7 @@ class SoftwareSelectionState implements \Serializable {
 
     $this->activeStep = $step_class;
     $this->user = user_load($uid);
-    $this->software_selection = $software_selection;
+    $this->software_selection = $software_advisor;
   }
 
 }

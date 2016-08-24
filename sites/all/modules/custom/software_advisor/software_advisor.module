@@ -5,8 +5,8 @@
  * Code for the TMT Investment Form feature.
  */
 
-use Drupal\software_selection\SoftwareSelectionController;
-use Drupal\software_selection\SoftwareSelectionStepBase;
+use Drupal\software_advisor\SoftwareAdvisorFormController;
+use Drupal\software_advisor\SoftwareAdvisorFormStepBase;
 
 /**
  * @todo use a proper autoloader.
@@ -53,36 +53,36 @@ spl_autoload_register(function ($class) {
 /**
  * Implements hook_menu().
  */
-function software_selection_menu() {
-  $items['software-selection/start'] = array(
+function software_advisor_menu() {
+  $items['software-advisor/start'] = array(
     'title' => 'Software selection start',
-    'page arguments' => array('software_selection_start_form'),
+    'page arguments' => array('software_advisor_start_form'),
     'page callback' => 'drupal_get_form',
     // @todo Add permission.
     'access arguments' => array('mt selection form'),
     'type' => MENU_CALLBACK,
-    'file' => 'software_selection.pages.inc',
+    'file' => 'software_advisor.pages.inc',
   );
   
-  $items['software-selection'] = array(
+  $items['software-advisor'] = array(
     'title' => 'Software selection',
     'page arguments' => array(1),
-    'page callback' => 'software_selection_page',
+    'page callback' => 'software_advisor_page',
     // @todo Add permission.
     'access arguments' => array('mt selection form'),
     'type' => MENU_CALLBACK,
-    'file' => 'software_selection.pages.inc',
+    'file' => 'software_advisor.pages.inc',
   );
 
   // @todo Implement success page.
-  $items['software-selection/success'] = array(
+  $items['software-advisor/success'] = array(
     'title' => 'Thank you!',
     'page arguments' => array(1),
-    'page callback' => 'software_selection_result_page',
-    'access callback' => 'software_selection_result_page_access',
+    'page callback' => 'software_advisor_result_page',
+    'access callback' => 'software_advisor_result_page_access',
     'access arguments' => array(1),
     'type' => MENU_CALLBACK,
-    'file' => 'software_selection.pages.inc',
+    'file' => 'software_advisor.pages.inc',
   );
 
   return $items;
@@ -95,22 +95,22 @@ function software_selection_menu() {
  *   The form where to add the elements.
  * @param array $form_state
  *   The form state.
- * @param \Drupal\software_selection\SoftwareSelectionStepBase $step
+ * @param \Drupal\software_advisor\SoftwareAdvisorFormStepBase $step
  *   The investment step to build.
  *
  * @return array
  *   The form array.
  */
-function software_selection_step_form($form, &$form_state, SoftwareSelectionStepBase $step) {
+function software_advisor_step_form($form, &$form_state, SoftwareAdvisorFormStepBase $step) {
   return $step->buildForm($form, $form_state);
 }
 
 /**
  * Form validation handler: Validates main investment form.
  */
-function software_selection_step_form_validate($form, &$form_state) {
+function software_advisor_step_form_validate($form, &$form_state) {
   if (isset($form_state['controller'])) {
-    /** @var SoftwareSelectionController $form_controller */
+    /** @var SoftwareAdvisorFormController $form_controller */
     $form_controller = $form_state['controller'];
     $form_controller->validateForm($form, $form_state);
   }
@@ -119,9 +119,9 @@ function software_selection_step_form_validate($form, &$form_state) {
 /**
  * Form submit handler: Submits main investment form.
  */
-function software_selection_step_form_submit($form, &$form_state) {
+function software_advisor_step_form_submit($form, &$form_state) {
   if (isset($form_state['controller'])) {
-    /** @var SoftwareSelectionController $form_controller */
+    /** @var SoftwareAdvisorFormController $form_controller */
     $form_controller = $form_state['controller'];
     $form_controller->submitForm($form, $form_state);
   }

@@ -5,12 +5,12 @@
  * Form step class.
  */
 
-namespace Drupal\software_selection;
+namespace Drupal\software_advisor;
 
 /**
  * Investment form summary step.
  */
-class SoftwareSelectionStepBusinessProcess extends SoftwareSelectionStepBase {
+class SoftwareAdvisorFormStepBusinessProcess extends SoftwareAdvisorFormStepBase {
 
   /**
    * {@inheritdoc}
@@ -39,7 +39,7 @@ class SoftwareSelectionStepBusinessProcess extends SoftwareSelectionStepBase {
 
     $values = $this->getEntityFunctions();
 
-    $tree = SoftwareSelectionUtil::getFunctionsTree($this->getStepId());
+    $tree = SoftwareAdvisorUtil::getFunctionsTree($this->getStepId());
     foreach ($tree as $category_tid => $functions) {
       $category = taxonomy_term_load($category_tid);
       $form[$category_tid] = array(

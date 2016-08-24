@@ -5,12 +5,12 @@
  * Form step class.
  */
 
-namespace Drupal\software_selection;
+namespace Drupal\software_advisor;
 
 /**
  * Investment form summary step.
  */
-class SoftwareSelectionStepMetadata extends SoftwareSelectionStepBase {
+class SoftwareAdvisorFormStepMetadata extends SoftwareAdvisorFormStepBase {
 
   /**
    * Gets selection entity from step state.

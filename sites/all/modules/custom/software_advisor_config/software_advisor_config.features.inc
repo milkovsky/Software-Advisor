@@ -23,6 +23,13 @@ function software_advisor_config_ctools_plugin_api($module = NULL, $api = NULL) 
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function software_advisor_config_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_node_info().
  */
 function software_advisor_config_node_info() {

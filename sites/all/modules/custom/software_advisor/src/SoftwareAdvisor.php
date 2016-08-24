@@ -349,10 +349,12 @@ class SoftwareAdvisor {
         }
       }
 
+      $vocabulary = taxonomy_vocabulary_machine_name_load($business_process);
+      $business_process_name = str_replace(' functions', '', $vocabulary->name);
       $output['content'][$business_process] = array(
         '#type' => 'container',
         'content' => array(
-          '#markup' => "<h2>$business_process</h2>"
+          '#markup' => "<h2>{$business_process_name}</h2>"
         ),
         'results' => array(
           '#theme' => 'table',

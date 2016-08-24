@@ -54,6 +54,7 @@ class SoftwareAdvisorUtil {
   public static function getFunctionsTree($business_process) {
     $vocabulary = taxonomy_vocabulary_machine_name_load($business_process);
     $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+    ksort($terms);
     $tree = array();
     foreach ($terms as $tid => $term) {
       $tree[$term->field_category[LANGUAGE_NONE][0]['tid']][$tid] = $term->name;

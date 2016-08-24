@@ -40,6 +40,7 @@ function software_advisor_start_form($form, &$form_state) {
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Start software selection'),
+    '#attributes' => array('class' => array('btn', 'btn-success')),
   );
   return $form;
 }

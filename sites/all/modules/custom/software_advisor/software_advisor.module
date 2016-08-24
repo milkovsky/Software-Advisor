@@ -11,6 +11,7 @@ use Drupal\software_advisor\SoftwareAdvisorFormStepBase;
 define('SOFTWARE_ADVISOR_CATEGORIES_NAME', 'Categories');
 define('SOFTWARE_ADVISOR_RATE_MIN', 0);
 define('SOFTWARE_ADVISOR_RATE_MAX', 5);
+define('SOFTWARE_ADVISOR_SUGGESTIONS_SCORE_MIN', 50);
 define('SOFTWARE_ADVISOR_SUGGESTIONS_NUMBER', 5);
 
 /**
@@ -63,8 +64,7 @@ function software_advisor_menu() {
     'title' => 'Software selection start',
     'page arguments' => array('software_advisor_start_form'),
     'page callback' => 'drupal_get_form',
-    // @todo Add permission.
-    'access arguments' => array('mt selection form'),
+    'access arguments' => array('software advisor selection'),
     'type' => MENU_CALLBACK,
     'file' => 'software_advisor.pages.inc',
   );
@@ -73,24 +73,24 @@ function software_advisor_menu() {
     'title' => 'Software selection',
     'page arguments' => array(1),
     'page callback' => 'software_advisor_page',
-    // @todo Add permission.
-    'access arguments' => array('mt selection form'),
-    'type' => MENU_CALLBACK,
-    'file' => 'software_advisor.pages.inc',
-  );
-
-  // @todo Implement success page.
-  $items['software-advisor/success'] = array(
-    'title' => 'Thank you!',
-    'page arguments' => array(1),
-    'page callback' => 'software_advisor_result_page',
-    'access callback' => 'software_advisor_result_page_access',
-    'access arguments' => array(1),
+    'access arguments' => array('software advisor selection'),
     'type' => MENU_CALLBACK,
     'file' => 'software_advisor.pages.inc',
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function software_advisor_permission() {
+  return array(
+    'software advisor selection' =>  array(
+      'title' => t('Software advisor selection'),
+      'description' => t('Perform software advisor selection.'),
+    ),
+  );
 }
 
 /**

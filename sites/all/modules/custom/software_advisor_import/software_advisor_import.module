@@ -13,10 +13,22 @@ function software_advisor_import_menu() {
     'title' => 'Data importer',
     'page arguments' => array('software_advisor_import_form'),
     'page callback' => 'drupal_get_form',
-    'access arguments' => array('mt import'),
+    'access arguments' => array('software advisor import'),
     'file' => 'software_advisor_import.pages.inc',
     'type' => MENU_CALLBACK,
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function software_advisor_import_permission() {
+  return array(
+    'software advisor import' =>  array(
+      'title' => t('Software advisor import'),
+      'description' => t('Perform software advisor data import.'),
+    ),
+  );
 }

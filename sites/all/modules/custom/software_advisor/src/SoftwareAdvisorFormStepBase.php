@@ -150,7 +150,7 @@ abstract class SoftwareAdvisorFormStepBase {
     $form['actions']['cancel'] = array(
       '#type' => 'submit',
       '#name' => 'cancel',
-      '#value' => t('Cancel'),
+      '#value' => t('Cancel selection process'),
       '#limit_validation_errors' => array() ,
     );
 
@@ -165,7 +165,7 @@ abstract class SoftwareAdvisorFormStepBase {
         '#type' => 'submit',
         '#name' => 'back',
         '#value' => t('Back'),
-        '#attributes' => array('class' => array('btn', 'btn-primary')),
+        '#attributes' => array('class' => array('btn', 'btn-primary', 'btn-lg')),
         '#limit_validation_errors' => array(),
       );
     }
@@ -173,8 +173,8 @@ abstract class SoftwareAdvisorFormStepBase {
     $form['actions']['next'] = array(
       '#type' => 'submit',
       '#name' => 'next',
-      '#value' => t('Next'),
-      '#attributes' => array('class' => array('btn', 'btn-success')),
+      '#value' => t('Next step'),
+      '#attributes' => array('class' => array('btn', 'btn-success', 'btn-lg')),
     );
 
     // Change "Next" button text on the last step.

@@ -99,7 +99,7 @@ class SoftwareAdvisor {
       foreach ($rates as $business_process => $values) {
         foreach ($applications as $nid => $application) {
           $rating = $this->rateApplication($application, $values, $business_process);
-          if ($rating) {
+          if ($rating >= SOFTWARE_ADVISOR_SUGGESTIONS_SCORE_MIN) {
             $ratings[$business_process][$nid] = $rating;
           }
         }
@@ -266,7 +266,7 @@ class SoftwareAdvisor {
       $rows = array();
 
       // Header, row with score, row with general data.
-      $header = array(t('Characteristics'), t('Choices'));
+      $header = array(t('Characteristic name'), t('Your choices'));
       $row_score = array(t('Score'), '');
       $row_general_data = array(t('General data'), '');
       foreach ($applications as $nid => $score) {
@@ -275,7 +275,7 @@ class SoftwareAdvisor {
         if ($rank % 2 == 0) {
           $class = 'even';
         }
-        $header[] = "#$rank Rank";
+        $header[] = $this->generateRankHtml($rank);
 
         $node = node_load($nid);
         $view = entity_view('node', array($node), 'teaser');
@@ -309,7 +309,7 @@ class SoftwareAdvisor {
           $this->convertRateToText($rates[$category_tid]),
           array(
             'data' => '',
-            'colspan' => SOFTWARE_ADVISOR_SUGGESTIONS_NUMBER,
+            'colspan' => count($applications),
           ),
         );
         $rows[] = $row;
@@ -354,7 +354,7 @@ class SoftwareAdvisor {
       $output['content'][$business_process] = array(
         '#type' => 'container',
         'content' => array(
-          '#markup' => "<h2>{$business_process_name}</h2>"
+          '#markup' => "<h2>{$business_process_name} suggestions</h2>"
         ),
         'results' => array(
           '#theme' => 'table',
@@ -406,6 +406,38 @@ class SoftwareAdvisor {
       $text = "<span class=\"badge\">$rate</span> <small class=\"text-muted\">$text</small>";
     }
     return $text;
+  }
+
+  /**
+   * Generates HTML for rank.
+   *
+   * @param int $rank
+   *   Rank value.
+   *
+   * @return string
+   *   Rank HTML.
+   */
+  protected function generateRankHtml($rank) {
+    $text = '';
+    switch ((int) $rank) {
+      case 1:
+        $text = "<span class=\"glyphicon glyphicon-king\"></span>";
+        break;
+      /*case 2:
+        $text = "<span class=\"glyphicon glyphicon-queen\"></span>";
+        break;
+      case 3:
+        $text = "<span class=\"glyphicon glyphicon-tower\"></span>";
+        break;
+      case 4:
+        $text = "<span class=\"glyphicon glyphicon-knight\"></span>";
+        break;
+      default:
+        $text = "<span class=\"glyphicon glyphicon-pawn\"></span>";
+        break;*/
+    }
+
+    return "#$rank Rank $text";
   }
 
 }

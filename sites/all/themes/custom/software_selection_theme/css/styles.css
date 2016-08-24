@@ -26,3 +26,13 @@ input[type="range"].form-control:focus {
     padding-bottom: 0; }
     .selection-form--category .panel-body .form-type-rangefield:hover {
       background: #efefef; }
+.selection-form .form-actions .form-submit {
+  margin-right: 1em; }
+.selection-form #edit-cancel,
+.selection-form #edit-actions-cancel {
+  float: right;
+  margin-right: 0; }
+
+/* Suggestions */
+.suggestions th {
+  white-space: nowrap; }

@@ -118,13 +118,17 @@ class SoftwareAdvisorFormController {
         break;
 
       default:
-        // Move to the next step.
         if (!isset($keys[$step_index + 1])) {
+          // Finish selection process.
           node_save($this->state->software_selection);
-          $this->clearStateData();
           drupal_set_message(t('You have successfully finished software selection! You can find your results below.'));
           $form_state['redirect'] = 'node/' . $this->state->software_selection->nid;
+
+          // Clear form data.
+          $this->clearStateData();
+          unset($_SESSION['software_advisor_business_processes']);
         }
+        // Move to the next step.
         else {
           $next_step = $keys[$step_index + 1];
           $this->state->activeStep = $next_step;

@@ -15,6 +15,11 @@ function software_advisor_import_form($form, &$form_state) {
       '!file' => drupal_get_path('module', 'software_advisor_import') . '/import/import.xlsx',
     )),
   );
+  $form['clear'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Clear data before import'),
+    '#suffix' => '<div class="alert alert-block alert-warning messages warning">' . t('!ATTENTION! This checkbox will remove next all the content: user software selection projects, applications, categories, functions.') . '</div>',
+  );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Import'),
@@ -26,28 +31,32 @@ function software_advisor_import_form($form, &$form_state) {
  * Import form submit callback.
  */
 function software_advisor_import_form_submit($form, &$form_state) {
+  // Clear current selection progress.
+  ctools_include('object-cache');
+  ctools_object_cache_clear_all('submission', 'software_advisor');
+  unset($_SESSION['software_advisor_business_processes']);
+
   $results = software_advisor_import_get_contents();
 
   // Set true to remove all the vocabularies first,
   $clear = FALSE;
+  if (!empty($form_state['values']['clear'])) {
+    $clear = TRUE;
+  }
 
   if ($clear) {
     $vocabularies = taxonomy_get_vocabularies();
     foreach ($vocabularies as $vocabulary) {
       taxonomy_vocabulary_delete($vocabulary->vid);
     }
+
+    $types = array('application', 'software_selection');
+    software_advisor_import_delete_nodes_of_type($types);
   }
 
   $applications = array();
 
   foreach ($results as $title => $rows) {
-    if ($clear) {
-      $machine_name = software_advisor_import_get_machine_name($title);
-      if ($vocabulary = taxonomy_vocabulary_machine_name_load($machine_name)) {
-        taxonomy_vocabulary_delete($vocabulary->vid);
-      }
-    }
-
     $vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title("$title functions");
     $categories_vocabulary = software_advisor_import_taxonomy_vocabulary_load_or_create_by_title(SOFTWARE_ADVISOR_CATEGORIES_NAME);
 
@@ -59,10 +68,10 @@ function software_advisor_import_form_submit($form, &$form_state) {
     foreach ($rows as $row_number => $row) {
       // Get application names from the 1st row.
       if ($row_number == 1) {
-        $row = array_filter($row, create_function('$value', 'return !empty($value);'));
-        $result_applications = array_slice($row, 1);
+        $result_applications = array_filter($row, create_function('$value', 'return !empty($value) && $value != "Function" && $value != "Description";'));
         continue;
       }
+
 
       if (empty($row['A']) || $row['A'] == 'Total') {
         // Skip empty rows and the total row.
@@ -72,12 +81,14 @@ function software_advisor_import_form_submit($form, &$form_state) {
         // Save category.
         $name = $row['A'];
         $category = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $categories_vocabulary);
+        // @todo: Import description.
       }
       else {
         // Add 'function' term and assign function's category.
         $name = $row['A'];
         $term = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $vocabulary);
         $term->field_category[LANGUAGE_NONE][0]['tid'] = (int) $category->tid;
+        // @todo: Import description.
         taxonomy_term_save($term);
 
         // Collect application values.
@@ -126,6 +137,8 @@ function software_advisor_import_form_submit($form, &$form_state) {
     }
     node_save($node);
   }
+
+  drupal_set_message(t('Import is completed.'));
 }
 
 /**
@@ -249,7 +262,7 @@ function software_advisor_import_initialize_vocabulary_fields($vocabulary) {
     field_create_field($field_base);
   }
 
-  if (!field_info_instance('node', $selection_field, 'application')) {
+  if (!field_info_instance('node', $selection_field, 'software_selection')) {
     // Create selection field instance if does not exist.
     $instance = array(
       'field_name' => $selection_field,
@@ -288,6 +301,19 @@ function software_advisor_import_initialize_vocabulary_fields($vocabulary) {
       ),
     );
     field_create_instance($instance);
+  }
+}
+
+function software_advisor_import_delete_nodes_of_type(array $types) {
+  $nids = db_select('node', 'n')
+    ->fields('n', array('nid'))
+    ->condition('type', $types, 'IN')
+    ->execute()
+    ->fetchCol();
+
+  if (!empty($nids)) {
+    node_delete_multiple($nids);
+    drupal_set_message(t('Deleted %count nodes.', array('%count' => count($nids))));
   }
 }
 

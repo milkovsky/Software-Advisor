@@ -31,7 +31,8 @@
     "drupal/panels": "^7.3",
     "phpoffice/phpexcel": "^1.8",
     "drupal/elements": "^7.1",
-    "drupal/node_view_permissions": "^7.1"
+    "drupal/node_view_permissions": "^7.1",
+    "drupal/jquery_update": "^7.3@alpha"
   },
   "scripts": {
     "post-create-project-cmd": ["rm README.md LICENSE .travis.yml phpunit.xml.dist CHANGELOG.txt .gitignore"]

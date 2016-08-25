@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ce3a4eac87a657729a393d69c27a4e5e",
-    "content-hash": "12d8b900a2ca8a1464fcb5f8b7b15303",
+    "hash": "5e56a8796d912ffad855bff6852aa2f4",
+    "content-hash": "dc338cb6dae8e191acb37e07dfc0ffdd",
     "packages": [
         {
             "name": "ckeditor/ckeditor",
@@ -848,6 +848,37 @@
             "homepage": "https://www.drupal.org/project/ftools"
         },
         {
+            "name": "drupal/jquery_update",
+            "version": "7.3.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/jquery_update",
+                "reference": "8fe2eb0fcad9b8db683b0f17d375f02d07212252"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_update-7.x-3.0-alpha3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/drupal": "7.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-7.x-3.x": "7.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Update jQuery and jQuery UI to a more recent version.",
+            "homepage": "https://www.drupal.org/project/jquery_update",
+            "time": "2015-10-20 22:25:49"
+        },
+        {
             "name": "drupal/libraries",
             "version": "7.2.3",
             "source": {
@@ -944,7 +975,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/node_view_permissions-7.x-1.5.zip",
-                "reference": null,
+                "reference": "5f36a47a8890fdb1da41ce9321f1d54f686c7a91",
                 "shasum": null
             },
             "require": {
@@ -1134,7 +1165,8 @@
     "stability-flags": {
         "davidbarratt/custom-installer": 15,
         "drupal/admin_menu": 5,
-        "drupal/master": 10
+        "drupal/master": 10,
+        "drupal/jquery_update": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,

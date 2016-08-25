@@ -12,20 +12,22 @@ input[type="range"].form-control:focus {
 /* Selection form */
 .selection-form .panel-heading {
   margin: 0; }
-  .selection-form--category .form-type-rangefield {
-    padding: 0.5em;
-    margin: 0; }
-    .selection-form--category .control-label {
-      width: 15em; }
-    .selection-form--category .form-range {
-      display: inline-block;
-      vertical-align: top;
-      margin-left: 1em; }
-  .selection-form--category .panel-heading .form-type-rangefield {
-    padding-top: 0;
-    padding-bottom: 0; }
-    .selection-form--category .panel-body .form-type-rangefield:hover {
-      background: #efefef; }
+.selection-form--category .form-type-rangefield {
+  margin: 0 2em 0 0;
+  float: left; }
+  .selection-form--row {
+    overflow: hidden;
+    padding: 0.5em; }
+  .selection-form--row:hover {
+    background: #efefef; }
+.selection-form--category .control-label {
+  width: 15em; }
+.selection-form--category .form-range {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 1em; }
+.selection-form--category .panel-heading .form-type-rangefield {
+  padding: 0 0 0 0.5em; }
 .selection-form .form-actions .form-submit {
   margin-right: 1em; }
 .selection-form #edit-cancel,

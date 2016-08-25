@@ -23,6 +23,7 @@ dependencies[] = filter
 dependencies[] = fpa
 dependencies[] = ftools
 dependencies[] = image
+dependencies[] = jquery_update
 dependencies[] = list
 dependencies[] = master
 dependencies[] = menu

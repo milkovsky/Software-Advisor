@@ -56,6 +56,9 @@ class SoftwareAdvisorFormStepBusinessProcess extends SoftwareAdvisorFormStepBase
             '#max' => 5,
             '#default_value' => isset($values[$category_tid]) ? $values[$category_tid] : 0,
           ),
+          'category_info' => array(
+            '#markup' => "<p class=\"selection-form--description text-muted\">$category->description</p>",
+          ),
         ),
       );
       $form[$category_tid]['body'] = array(
@@ -64,12 +67,20 @@ class SoftwareAdvisorFormStepBusinessProcess extends SoftwareAdvisorFormStepBase
       );
       foreach ($functions as $tid => $function) {
         $form[$category_tid]['body'][$tid] = array(
+          '#prefix' => '<div class="selection-form--row">',
           '#type' => 'rangefield',
           '#title' => $function,
           '#step' => 1,
           '#min' => 0,
           '#max' => 5,
           '#default_value' => isset($values[$tid]) ? $values[$tid] : 0,
+        );
+
+        // Function term.
+        $term = taxonomy_term_load($tid);
+        $form[$category_tid]['body'][$tid . '_description'] = array(
+          '#markup' => "<p class=\"selection-form--description text-muted\">$term->description</p>",
+          '#suffix' => '</div>',
         );
       }
     }

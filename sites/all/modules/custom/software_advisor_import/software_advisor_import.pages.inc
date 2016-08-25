@@ -64,10 +64,12 @@ function software_advisor_import_form_submit($form, &$form_state) {
 
     $category = NULL;
     $result_applications = NULL;
+    $description_key = NULL;
 
     foreach ($rows as $row_number => $row) {
       // Get application names from the 1st row.
       if ($row_number == 1) {
+        $description_key = array_search('Description', $row);
         $result_applications = array_filter($row, create_function('$value', 'return !empty($value) && $value != "Function" && $value != "Description";'));
         continue;
       }
@@ -81,14 +83,22 @@ function software_advisor_import_form_submit($form, &$form_state) {
         // Save category.
         $name = $row['A'];
         $category = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $categories_vocabulary);
-        // @todo: Import description.
+        // Save category description.
+        if (!empty($row[$description_key])) {
+          $category->description = $row[$description_key];
+          taxonomy_term_save($category);
+        }
       }
       else {
-        // Add 'function' term and assign function's category.
+        // Add 'function' term.
         $name = $row['A'];
         $term = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $vocabulary);
+        // Assign function's category
         $term->field_category[LANGUAGE_NONE][0]['tid'] = (int) $category->tid;
-        // @todo: Import description.
+        // Save function's description.
+        if (!empty($row[$description_key])) {
+          $term->description = $row[$description_key];
+        }
         taxonomy_term_save($term);
 
         // Collect application values.

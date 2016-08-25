@@ -305,7 +305,7 @@ class SoftwareAdvisor {
         // Category row.
         $term = taxonomy_term_load($category_tid);
         $row = array(
-          '<strong>' . $term->name . '</strong>',
+          "<strong title=\"{$term->description}\" data-toggle=\"tooltip\">{$term->name}</strong>",
           $this->convertRateToText($rates[$category_tid]),
           array(
             'data' => '',
@@ -321,7 +321,14 @@ class SoftwareAdvisor {
             continue;
           }
 
-          $row = array($name, $this->convertRateToText($rates[$tid]));
+          // Function term.
+          $term = taxonomy_term_load($tid);
+
+          $row = array(
+            "<span title=\"{$term->description}\" data-toggle=\"tooltip\">{$name}</span>",
+            $this->convertRateToText($rates[$tid]),
+          );
+
           $rank = 0;
           foreach ($applications as $nid => $score) {
             $rank++;

@@ -70,7 +70,7 @@ function software_advisor_import_form_submit($form, &$form_state) {
       // Get application names from the 1st row.
       if ($row_number == 1) {
         $description_key = array_search('Description', $row);
-        $result_applications = array_filter($row, create_function('$value', 'return !empty($value) && $value != "Function" && $value != "Description";'));
+        $result_applications = array_filter($row, create_function('$value', 'return !empty($value) && $value != "Functions" && $value != "Description";'));
         continue;
       }
 

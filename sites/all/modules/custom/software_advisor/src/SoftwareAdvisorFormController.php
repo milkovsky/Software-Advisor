@@ -132,8 +132,8 @@ class SoftwareAdvisorFormController {
         else {
           $next_step = $keys[$step_index + 1];
           $this->state->activeStep = $next_step;
+          $this->saveStateData();
         }
-        $this->saveStateData();
         break;
     }
   }

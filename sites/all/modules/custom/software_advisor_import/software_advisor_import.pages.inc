@@ -90,7 +90,7 @@ function software_advisor_import_form_submit($form, &$form_state) {
         }
       }
       else {
-        // Add 'function' term.
+        // Add 'function' terms.
         $name = $row['A'];
         $term = software_advisor_import_taxonomy_term_load_or_create_by_name($name, $vocabulary);
         // Assign function's category

@@ -1,6 +1,0 @@
-name = Software Selection Theme
-description = Built on use Bootstrap.
-core = 7.x
-base theme = bootstrap
-
-stylesheets[all][] = css/styles.css
